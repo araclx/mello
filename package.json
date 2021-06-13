@@ -6,6 +6,9 @@
   "author": "Jakub Olan <jakub.jay.olan@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "format": "bash bin/format.sh"
+  }
   "devDependencies": {
     "husky": "^6.0.0",
     "import-sort": "^6.0.0",
