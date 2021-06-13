@@ -9,4 +9,4 @@ echo "💆 Sorting imports..."
 import-sort --write '**/*.{js,jsx,ts,tsx}'
 
 echo "💆 Prettier..."
-prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,json,yaml,yml}' # '.editorconfig' 'LICENSE'
+prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,json}' # '.editorconfig' 'LICENSE'
