@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "format": "bash bin/format.sh"
+    "format": "bash scripts/format.sh"
   },
   "devDependencies": {
     "husky": "^6.0.0",
