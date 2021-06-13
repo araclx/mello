@@ -1,0 +1,12 @@
+{
+  "name": "@araclx/mello",
+  "version": "0.0.0-dev",
+  "main": "index.js",
+  "repository": "https://github.com/araclx/mello.git",
+  "author": "Jakub Olan <jakub.jay.olan@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
