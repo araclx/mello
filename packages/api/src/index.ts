@@ -1,3 +1,3 @@
-import {httpInterface} from './interfaces/http'
+import { httpInterface } from './interfaces/http'
 
 new httpInterface().listen()
