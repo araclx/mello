@@ -7,6 +7,8 @@ import morgan from 'morgan'
 import cfonts from 'cfonts'
 import dotenv from 'dotenv'
 
+import {ProfileService} from '../users/service'
+
 dotenv.config();
 
 export class httpInterface {
@@ -48,6 +50,7 @@ export class httpInterface {
     }
 
     private routing() {
+        this.app.use('/profiles', new ProfileService().router)
         this.app.get('/', (_, res) => {
             res.json({
                 message: 'Hello World!',
