@@ -8,7 +8,6 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@araclx/tsconfig": "0.0.11",
     "@prisma/cli": "^2.16.0-dev.68",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.10",
