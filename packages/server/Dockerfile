@@ -40,4 +40,4 @@ USER node
 # Application Entrypoint
 EXPOSE 3600/tcp
 ENTRYPOINT ["node"]
-CMD [ "dist/index.js" ]
+CMD [ "dist/src/index.js" ]

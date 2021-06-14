@@ -5,6 +5,7 @@
 		"emitDecoratorMetadata": true,
 		"target": "ES2018",
 		"lib": ["ES2018"],
-		"baseUrl": "./src"
+		"baseUrl": "./src",
+		"outDir": "./dist/src"
 	}
 }

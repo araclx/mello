@@ -5,13 +5,17 @@ import signale from 'signale'
 import getport from 'get-port'
 import morgan from 'morgan'
 import cfonts from 'cfonts'
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 export class httpInterface {
     public app: express.Application
 
     constructor() {
-        this.app = express()
-        this.middleware()
+        this.app = express();
+        this.middleware();
+        this.routing();
     }
 
     /** Core function dedicated for running Node.js server on preffered port from .env,
@@ -43,6 +47,12 @@ export class httpInterface {
         this.app.use(compression())
     }
 
-   // private routing() {}
+    private routing() {
+        this.app.get('/api/hello', (_, res) => {
+            res.json({
+                message: 'Hello World!',
+            });
+        });
+   }
    // private errorHandling() {}
 }
