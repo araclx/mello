@@ -5,7 +5,7 @@ dotenv.config();
 const { PORT } = process.env;
 
 const initializeServer = (): void => {
-    
+
     const app = express();
 
     app.get('/api/hello', (_, res) => {
@@ -14,7 +14,7 @@ const initializeServer = (): void => {
         });
     });
 
-    app.listen(PORT ? Number(PORT) : 3000, () => {
+    app.listen(PORT ? Number(PORT) : 3600, () => {
         console.log(`⚡ Server is running on port ${PORT}`);
     });
 };
