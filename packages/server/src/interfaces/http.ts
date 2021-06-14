@@ -38,7 +38,7 @@ export class httpInterface {
 			signale.success(`Server listening on http://${HOST}:${appPORT}`)
 		})
     }
-    
+
     private middleware() {
         this.app.disable("x-powered-by")
         this.app.use(express.json())
@@ -48,7 +48,7 @@ export class httpInterface {
     }
 
     private routing() {
-        this.app.get('/api/hello', (_, res) => {
+        this.app.get('/', (_, res) => {
             res.json({
                 message: 'Hello World!',
             });

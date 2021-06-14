@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@araclx/tsconfig": "0.0.11",
+    "@prisma/cli": "^2.16.0-dev.68",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.10",
     "@types/errorhandler": "^1.5.0",
@@ -20,6 +21,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
+    "@prisma/client": "2.16.0-dev.68",
     "cfonts": "^2.9.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -28,7 +30,7 @@
     "express": "^4.17.1",
     "get-port": "^5.1.1",
     "morgan": "^1.10.0",
-    "prisma": "^2.24.1",
+    "prisma": "2.16.0-dev.68",
     "signale": "^1.4.0"
   }
 }
