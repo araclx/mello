@@ -1,0 +1,27 @@
+# Local-oriented docker-compose configuration.
+# This configuration was intended for running application services
+# locally without usage of Docker, this configuration uses Docker just
+# to run necessary infrastructure services.
+
+version: '3.8'
+
+services:
+  # To initialize this service you need to use an one command
+  # docker exec -it cockroach ./cockroach init --insecure
+  # at the first time
+  cockroach:
+    container_name: mello-cockroach
+    image: cockroachdb/cockroach:v21.1.2
+    command: start --insecure --join=cockroach
+    ports:
+      - 26257:26257
+      - 8080:8080
+  minio:
+    container_name: mello-minio
+    command: server /data
+    image: minio/minio:edge
+    environment:
+      MINIO_ACCESS_KEY: AKIAIOSFODNN7EXAMPLE
+      MINIO_SECRET_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    ports:
+      - 9000:9000
