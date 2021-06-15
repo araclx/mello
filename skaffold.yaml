@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: mello-services
+build:
+  artifacts:
+    - image: araclx/mello-api
+      context: packages/api
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      # api
+      - packages/api/.kubernetes/deployment.yaml
+      - packages/api/.kubernetes/svc.yaml

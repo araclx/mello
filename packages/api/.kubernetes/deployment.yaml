@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mello-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mello-api
+  template:
+    metadata:
+      labels:
+        app: mello-api
+    spec:
+      containers:
+      - name: mello-api
+        image: araclx/mello-api
+        ports:
+        - containerPort: 3600
+          name: tcp
