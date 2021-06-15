@@ -7,7 +7,9 @@
 	"author": "Jakub Olan <jakub.jay.olan@gmail.com>",
 	"main": "index.js",
 	"scripts": {
-		"format": "bash scripts/format.sh"
+		"format": "bash scripts/format.sh",
+		"install": "lerna bootstrap",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"husky": "^6.0.0",
