@@ -8,5 +8,23 @@ export class ProfileController {
 		response.json(data)
 	}
 
-	public async createProfile(request: Request, response: Response) {}
+	// TODO: Improve vaildation by implementing status codes and additional checkings,
+	// like... this username is already taken and so on.
+	public async createProfile(request: Request, response: Response) {
+		const { createNewProfile } = new ProfileAction()
+		let newProfile
+
+		try {
+			newProfile = await createNewProfile(request.body)
+			response
+				.json({
+					data: newProfile,
+				})
+				.status(200)
+		} catch (e) {
+			response.json({
+				e: e,
+			})
+		}
+	}
 }
