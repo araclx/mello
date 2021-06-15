@@ -11,26 +11,25 @@ generator client {
 }
 
 model Profile {
-  id      Int     @id @default(autoincrement())
-  username String @unique
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
   firstName String
-  lastName String
-  email String
-  gender Gender
-  height Int
-  weight Int
+  lastName  String
+  email     String
+  gender    Gender
+  height    Int
+  weight    Int
   birthdate DateTime
   hairColor String
-  eyeColor String
-  biography     String
-  mbti MBTI
-  hobbys Hobby[] @relation(references: [id])
-  userId  Int
+  eyeColor  String
+  biography String
+  mbti      MBTI
+  hobbys    Hobby[]  @relation(references: [id])
 }
 
 model Hobby {
-  id Int @id @default(autoincrement())
-  name String
+  id       Int       @id @default(autoincrement())
+  name     String
   profiles Profile[] @relation(references: [id])
 }
 
