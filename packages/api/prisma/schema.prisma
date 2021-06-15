@@ -17,12 +17,14 @@ model Profile {
   lastName  String
   email     String
   gender    Gender
-  height    Int
-  weight    Int
+  height    Int @ignore
+  weight    Int @ignore
   birthdate DateTime
   hairColor String
   eyeColor  String
   biography String
+  lastLogin DateTime
+  location Unsupported("Geolocation")
   mbti      MBTI
   hobbys    Hobby[]  @relation(references: [id])
 }
