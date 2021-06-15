@@ -14,7 +14,7 @@ description: Documentation dedicated for Mello's API.
           application/json:
             type: string
 
-/profile:
+/profiles:
   get:
     responses:
       '200':
@@ -29,6 +29,11 @@ description: Documentation dedicated for Mello's API.
             type: object
     body:
       application/json:
+        example: {
+          "username": "keinsell",
+          "firstName": "Jakub",
+          "lastName": "Olan"
+          }
         type: object
         properties:
           username:
