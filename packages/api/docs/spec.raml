@@ -13,3 +13,60 @@ description: Documentation dedicated for Mello's API.
         body:
           application/json:
             type: string
+
+/profile:
+  get:
+    responses:
+      '200':
+        body:
+          application/json:
+            type: array
+  post:
+    responses:
+      '200':
+        body:
+          application/json:
+            type: object
+    body:
+      application/json:
+        type: object
+        properties:
+          username:
+            type: string
+            required: true
+            description: Unique username of specific user at our platform.
+          firstName:
+            type: string
+            required: true
+            description: Stands for user's first name.
+          lastName:
+            type: string
+            required: true
+            description: Stands for user's last name .
+          email:
+            type: string
+            required: true
+            description: Stands for user's email address.
+          gender:
+            type: array
+            required: true
+            description: Stands for user's gender as an enum for "MALE", "FEMALE" and "OTHER"
+          height:
+            type: integer
+            required: false
+            description: Stands for user's height in centimeters.
+          weight:
+            type: integer
+            required: false
+            description: Stands for user's weight in kilograms.
+          birthdate:
+            type: date-only
+            required: true
+            description: Stands for user's birthdate for age calculation.
+          hairColor: string
+          eyeColor: string
+          biography: string
+          lastLogin: datetime
+          location: string
+          mbit: string
+          hobbys: array
