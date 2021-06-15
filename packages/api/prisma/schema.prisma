@@ -10,39 +10,55 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  role    Role     @default(USER)
-  posts   Post[]
-  profile Profile?
-}
-
 model Profile {
   id      Int     @id @default(autoincrement())
-  bio     String
-  user    User    @relation(fields: [userId], references: [id])
+  username String @unique
+  firstName String
+  lastName String
+  email String
+  gender Gender
+  height Int
+  weight Int
+  birthdate DateTime
+  hairColor String
+  eyeColor String
+  biography     String
+  mbti MBTI
+  hobbys Hobby[] @relation(references: [id])
   userId  Int
 }
 
-model Post {
-  id         Int         @id @default(autoincrement())
-  createdAt  DateTime    @default(now())
-  title      String
-  published  Boolean     @default(false)
-  author     User        @relation(fields: [authorId], references: [id])
-  authorId   Int
-  categories Category[]  @relation(references: [id])
-}
-
-model Category {
-  id    Int     @id @default(autoincrement())
-  name  String
-  posts Post[]  @relation(references: [id])
+model Hobby {
+  id Int @id @default(autoincrement())
+  name String
+  profiles Profile[] @relation(references: [id])
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum MBTI {
+  ISTJ
+  ISFJ
+  ISTP
+  ISFP
+  INTJ
+  INTP
+  INFJ
+  INFP
+  ESTJ
+  ESFJ
+  ESTP
+  ESFP
+  ENTJ
+  ENTP
+  ENFJ
+  ENFP
 }
