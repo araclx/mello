@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Mello
+baseUri: https://api.m3llo.com
+protocols:
+  - HTTPS
+version: 0.0.1
+description: Documentation dedicated for Mello's API.
+
+/:
+  get:
+    responses:
+      '200':
+        body:
+          application/json:
+            type: string
