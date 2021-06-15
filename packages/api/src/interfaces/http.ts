@@ -9,7 +9,7 @@ import errorhandler from 'errorhandler'
 
 import { ProfileService } from '../users/service'
 
-import { HOST, isDevelopment, NODE_ENV, PORT } from '../utils/env'
+import { HOST, isDevelopment, PORT } from '../utils/env'
 
 export class httpInterface {
 	public app: express.Application
