@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM, { render } from 'react-dom'
+import { render } from 'react-dom'
 import { ThemeProvider } from '@emotion/react'
 import theme from '@rebass/preset'
 import { Auth0Provider } from '@auth0/auth0-react'
@@ -24,7 +24,7 @@ class Index extends React.Component {
 	}
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'))
+render(<Index />, document.getElementById('root'))
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
