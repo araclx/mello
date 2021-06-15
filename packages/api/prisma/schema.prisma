@@ -24,7 +24,7 @@ model Profile {
   eyeColor  String
   biography String
   lastLogin DateTime
-  location Unsupported("Geolocation")
+  location Unsupported("Geography")
   mbti      MBTI
   hobbys    Hobby[]  @relation(references: [id])
 }
