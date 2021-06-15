@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@araclx/tsconfig@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@araclx/tsconfig/-/tsconfig-0.0.11.tgz#b7dde8c7fddcd3a930faa769246cf741c9255f44"
-  integrity sha512-NHSgfgThVxN7hFDS/pljirqvmmjdiCPSGBy1udKDIHq9d9YCSXctfQVIBEab1hDjrY7/FloOz9eEoHi/fQa89w==
-
 "@prisma/cli@^2.16.0-dev.68":
   version "2.16.0-dev.68"
   resolved "https://registry.yarnpkg.com/@prisma/cli/-/cli-2.16.0-dev.68.tgz#7122c0df95e262a4ada82abf30c7757719af78a4"
