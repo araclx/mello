@@ -1,19 +1,18 @@
-import logo from './logo.svg'
-import './App.css'
+import {Flex, Text, Box, Link} from 'rebass'
 
 function App() {
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<Flex
+		  px={2}
+		  color='white'
+		  bg='black'
+		  alignItems='center'>
+		  <Text p={2} fontWeight='bold'>Mello Public NotEvenAlpha 0.0.1-dev</Text>
+		  <Box mx='auto' />
+		  <Link variant='nav' color="white" href='#!'>
+		    Login
+		  </Link>
+		</Flex>
 	)
 }
 
