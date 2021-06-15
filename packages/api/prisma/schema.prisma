@@ -42,6 +42,7 @@ enum Role {
 enum Gender {
   MALE
   FEMALE
+  OTHER
 }
 
 enum MBTI {
