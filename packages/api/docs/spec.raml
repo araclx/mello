@@ -35,30 +35,37 @@ description: Documentation dedicated for Mello's API.
             type: string
             required: true
             description: Unique username of specific user at our platform.
+            example: keinsell
           firstName:
             type: string
             required: true
             description: Stands for user's first name.
+            example: Jakub
           lastName:
             type: string
             required: true
-            description: Stands for user's last name .
+            description: Stands for user's last name.
+            example: Olan
           email:
             type: string
             required: true
             description: Stands for user's email address.
+            example: jakub.jay.olan@gmail.com
           gender:
             type: array
             required: true
             description: Stands for user's gender as an enum for "MALE", "FEMALE" and "OTHER"
+            example: MALE
           height:
             type: integer
             required: false
             description: Stands for user's height in centimeters.
+            example: 179
           weight:
             type: integer
             required: false
             description: Stands for user's weight in kilograms.
+            example: 65
           birthdate:
             type: date-only
             required: true
