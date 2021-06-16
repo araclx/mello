@@ -1,0 +1,133 @@
+version: 2.1
+# ENV VARS
+# CONTEXT: DOCKER
+#   DOCKER_LOGIN
+#   DOCKER_PASSWORD
+# CONTEXT: MELLO-*
+#   KUBECONFIG_DATA = base64.kubeconfig
+# CONTEXT: MELLO-GH-TOKEN
+#   GH_TOKEN
+
+orbs:
+  node: circleci/node@4.4.0
+  kubernetes: circleci/kubernetes@0.12.0
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:12.18.2
+
+jobs:
+  test:
+    working_directory: ~/repo
+    executor: node
+    steps:
+      - checkout
+      - node/install-yarn
+      - run: node --version
+      - run: yarn --version
+      # ui
+      - node/install-packages:
+          app-dir: ~/repo/packages/ui
+          pkg-manager: yarn
+      - run: cd ~/repo/packages/ui && yarn test --coverage
+      - store_artifacts:
+          path: services/ui/coverage
+          destination: ui-coverage
+      # api
+      - node/install-packages:
+          app-dir: ~/repo/packages/api
+          pkg-manager: yarn
+      - run: cd ~/repo/packages/api && yarn test --coverage
+      - store_artifacts:
+          path: services/api/coverage
+          destination: api-coverage
+
+  deploy:
+    working_directory: ~/repo
+    executor: node
+    steps:
+      - setup_remote_docker:
+          version: 20.10.2
+      - checkout
+      - kubernetes/install-kubectl
+      - kubernetes/install-kubeconfig:
+          kubeconfig: KUBECONFIG_DATA
+      - run: 'echo "$DOCKER_PASSWORD"  | docker login --username $DOCKER_LOGIN --password-stdin'
+      - run: 'curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && sudo install skaffold /usr/local/bin/'
+      - run: 'skaffold run'
+
+  release:
+    working_directory: ~/repo
+    executor: node
+    steps:
+      - checkout
+      # release ui
+      - run: cd ~/repo/packages/ui && yarn
+      - run: cd ~/repo/packages/ui && yarn run semantic-release
+      # release back
+      - run: cd ~/repo/packages/api && yarn
+      - run: cd ~/repo/packages/api && yarn run semantic-release
+
+workflows:
+  dev:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - main
+      - release:
+          context: MELLO-GH-TOKEN
+          requires:
+            - 'test'
+          filters:
+            branches:
+              only:
+                - main
+
+  edge:
+    jobs:
+      - test
+      - deploy:
+          context: 
+            - MELLO-DOCKER
+            - MELLO-EDGE
+          requires:
+            - 'test'
+      - release:
+          context: MELLO-GH-TOKEN
+          requires:
+            - 'test'
+            - 'deploy'
+    triggers:
+      - schedule:
+          cron: '0 1 * * *' # is 03:00 Warsaw
+          filters:
+            branches:
+              only:
+                - streamline/edge  
+
+  main:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: streamline/main
+      - deploy:
+          context:
+            - MELLO-DOCKER
+            - MELLO-MAIN
+          requires:
+            - 'test'
+          filters:
+            branches:
+              only: streamline/main
+      - release:
+          context: MELLO-GH-TOKEN
+          requires:
+            - 'test'
+            - 'deploy'
+          filters:
+            branches:
+              only: streamline/main
