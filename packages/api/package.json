@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "tsnd --respawn src/index.ts",
+		"proxy": "osprey -f docs/spec.raml -p 8000 -a localhost:3600",
 		"build": "tsc"
 	},
 	"devDependencies": {
@@ -29,6 +30,7 @@
 		"express": "^4.17.1",
 		"get-port": "^5.1.1",
 		"morgan": "^1.10.0",
+		"osprey": "^1.0.0",
 		"prisma": "2.16.0-dev.68",
 		"signale": "^1.4.0"
 	}
