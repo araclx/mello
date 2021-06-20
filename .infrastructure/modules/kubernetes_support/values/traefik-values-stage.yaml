@@ -1,0 +1,114 @@
+#
+# Configure the deployment
+#
+deployment:
+  enabled: true
+  # Can be either Deployment or DaemonSet
+  kind: Deployment
+  # Number of pods of the deployment (only applies when kind == Deployment)
+  replicas: 1
+
+# Pod disruption budget
+podDisruptionBudget:
+  enabled: false
+  # maxUnavailable: 1
+  # minAvailable: 0
+
+# Create an IngressRoute for the dashboard
+ingressRoute:
+  dashboard:
+    enabled: false
+
+rollingUpdate:
+  maxUnavailable: 1
+  maxSurge: 1
+
+
+#
+# Configure providers
+#
+providers:
+  kubernetesCRD:
+    enabled: true
+    namespaces: []
+  kubernetesIngress:
+    enabled: true
+    # labelSelector: environment=production,method=traefik
+    namespaces:
+      - "mello-stage"
+      
+volumes: []
+additionalVolumeMounts: []
+
+# Logs
+# https://docs.traefik.io/observability/logs/
+logs:
+  # Traefik logs concern everything that happens to Traefik itself (startup, configuration, events, shutdown, and so on).
+  general:
+    format: json
+    # By default, the level is set to ERROR. Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
+    level: ERROR
+  access:
+    enabled: true
+    filters: {}
+    fields:
+      general:
+        defaultmode: keep
+        names: {}
+      headers:
+        defaultmode: drop
+        names: {}
+
+globalArguments:
+  - "--global.checknewversion"
+
+#
+# Configure Traefik static configuration
+additionalArguments: 
+  - "--entrypoints.web.http.redirections.entrypoint.to=:443"
+  - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+
+# Configure ports
+ports:
+  web:
+    port: 8000
+    expose: true
+    exposedPort: 80
+    protocol: TCP
+    redirectTo: websecure
+    
+  websecure:
+    port: 8443
+    expose: true
+    exposedPort: 443
+    protocol: TCP
+
+tlsOptions: {}
+
+hostNetwork: false
+
+# Whether Role Based Access Control objects like roles and rolebindings should be created
+rbac:
+  enabled: true
+  namespaced: false
+
+resources:
+  requests:
+    cpu: "10m"
+    memory: "50Mi"
+  limits:
+    cpu: "250m"
+    memory: "150Mi"
+
+# Set the container security context
+securityContext:
+  capabilities:
+    drop: [ALL]
+  readOnlyRootFilesystem: true
+  runAsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+
+podSecurityContext:
+  fsGroup: 65532
+

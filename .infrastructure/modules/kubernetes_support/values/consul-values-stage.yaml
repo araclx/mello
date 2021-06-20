@@ -1,0 +1,19 @@
+global:
+  enabled: true
+  datacenter: mello-dc-stage
+server:
+  replicas: 1
+  resources:
+    requests:
+      memory: '10Mi'
+      cpu: '10m'
+    limits:
+      memory: '256Mi'
+      cpu: '200m'
+  securityContext:
+    runAsNonRoot: false
+    runAsUser: 0
+connectInject:
+  enabled: true
+controller:
+  enabled: true
