@@ -59,7 +59,7 @@ resource "digitalocean_loadbalancer" "this" {
 
 resource "local_file" "this" {
   content  = digitalocean_kubernetes_cluster.this.kube_config[0].raw_config
-  filename = "../../kubeconfigs/${var.env}/kubeconfig_mello-${var.env}"
+  filename = "/var/kubeconfigs/mello/config_mello-${var.env}"
 }
 
 // Firewall
@@ -67,7 +67,7 @@ resource "digitalocean_firewall" "this" {
   name = var.firewall_name
 
   droplet_ids = digitalocean_kubernetes_cluster.this.node_pool[0].nodes[*].droplet_id
-  tags = var.firewall_tags
+  tags        = var.firewall_tags
   inbound_rule {
     protocol                  = var.firewall_inbound_protocol_r1
     port_range                = var.firewall_inbound_ports_r1

@@ -2,13 +2,24 @@ include {
   path = find_in_parent_folders()
 }
 
+generate "provider" {
+  path      = "provider_do.tf"
+  if_exists = "overwrite"
+  contents  = <<EOF
+variable "do_token" {}
+
+provider "digitalocean" {
+  token = var.do_token
+}
+EOF
+}
+
 terraform {
   source = "../../../modules//core"
 }
 
 inputs = {
   region = "fra1"
-  env    = "stage"
 
   // VPC
   vpc_name = "mello-vpc-stage"
