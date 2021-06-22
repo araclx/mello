@@ -1,9 +1,9 @@
-import { Profile } from ".prisma/client";
+import { Profile } from '.prisma/client'
 
 declare global {
 	namespace Express {
 		interface Request {
-			payload?: Profile;
+			payload?: Profile
 		}
 	}
 }
