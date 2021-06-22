@@ -15,7 +15,7 @@ export class ProfileController {
 		let newProfile
 
 		try {
-			newProfile = await createNewProfile(request.body)
+			newProfile = await createNewProfile(request.payload)
 			response
 				.json({
 					data: newProfile,
@@ -23,7 +23,7 @@ export class ProfileController {
 				.status(200)
 		} catch (e) {
 			response.json({
-				e: e,
+				e: e.message,
 			})
 		}
 	}
