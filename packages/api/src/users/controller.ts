@@ -8,6 +8,30 @@ export class ProfileController {
 		response.json(data)
 	}
 
+	public async getProfile(request: Request, response) {
+		const { returnProfileFromDatabase } = new ProfileAction();
+		
+		try {
+			const profile = await returnProfileFromDatabase(request.payload);
+			if (profile)
+				response
+					.json({
+						data: profile,
+					})
+					.status(200);
+			else
+				response
+					.sendStatus(404);
+		}
+		catch (e) {
+			response
+				.json({
+					e: e.message,
+				})
+				.status(500);
+		}
+	}
+
 	// TODO: Improve vaildation by implementing status codes and additional checkings,
 	// like... this username is already taken and so on.
 	public async createProfile(request: Request, response: Response) {
@@ -25,6 +49,52 @@ export class ProfileController {
 			response.json({
 				e: e.message,
 			})
+		}
+	}
+
+	public async updateProfile(request: Request, response: Response) {
+		const { updateProfile } = new ProfileAction();
+
+		try {
+			const updatedProfile = await updateProfile(request.payload);
+			response
+				.json({
+					data: updatedProfile,
+				})
+				.status(200);
+		}
+		catch (e) {
+			response
+				.json({
+					e: e.message,
+				})
+				.status(500);
+		}
+	}
+
+	public async deleteProfile(request: Request, response: Response) {
+		const { deleteProfile } = new ProfileAction();
+
+		try {
+			const deletedProfile = await deleteProfile(request.payload);
+			if (deletedProfile)
+				response
+					.json({
+						data: {
+							deletedProfile,
+						},
+					})
+					.status(200);
+			else
+				response
+					.sendStatus(400);
+		}
+		catch (e) {
+			response
+				.json({
+					e: e.message,
+				})
+				.status(500);
 		}
 	}
 }

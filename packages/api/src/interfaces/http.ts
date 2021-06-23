@@ -10,6 +10,7 @@ import errorhandler from 'errorhandler'
 import { ProfileService } from '../users/service'
 
 import { HOST, isDevelopment, PORT } from '../utils/env'
+import { authenticate } from '../middleware/authenticate'
 
 export class httpInterface {
 	public app: express.Application
@@ -47,7 +48,7 @@ export class httpInterface {
 	}
 
 	private routing() {
-		this.app.use('/profiles', new ProfileService().router)
+		this.app.use('/profiles', authenticate, new ProfileService().router)
 		this.app.get('/', (_, res) => {
 			res.json({
 				message: 'Hello World!',
