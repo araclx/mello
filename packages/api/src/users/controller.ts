@@ -9,26 +9,23 @@ export class ProfileController {
 	}
 
 	public async getProfile(request: Request, response) {
-		const { returnProfileFromDatabase } = new ProfileAction();
-		
+		const { returnProfileFromDatabase } = new ProfileAction()
+
 		try {
-			const profile = await returnProfileFromDatabase(request.payload);
+			const profile = await returnProfileFromDatabase(request.payload)
 			if (profile)
 				response
 					.json({
 						data: profile,
 					})
-					.status(200);
-			else
-				response
-					.sendStatus(404);
-		}
-		catch (e) {
+					.status(200)
+			else response.sendStatus(404)
+		} catch (e) {
 			response
 				.json({
 					e: e.message,
 				})
-				.status(500);
+				.status(500)
 		}
 	}
 
@@ -53,30 +50,29 @@ export class ProfileController {
 	}
 
 	public async updateProfile(request: Request, response: Response) {
-		const { updateProfile } = new ProfileAction();
+		const { updateProfile } = new ProfileAction()
 
 		try {
-			const updatedProfile = await updateProfile(request.payload);
+			const updatedProfile = await updateProfile(request.payload)
 			response
 				.json({
 					data: updatedProfile,
 				})
-				.status(200);
-		}
-		catch (e) {
+				.status(200)
+		} catch (e) {
 			response
 				.json({
 					e: e.message,
 				})
-				.status(500);
+				.status(500)
 		}
 	}
 
 	public async deleteProfile(request: Request, response: Response) {
-		const { deleteProfile } = new ProfileAction();
+		const { deleteProfile } = new ProfileAction()
 
 		try {
-			const deletedProfile = await deleteProfile(request.payload);
+			const deletedProfile = await deleteProfile(request.payload)
 			if (deletedProfile)
 				response
 					.json({
@@ -84,17 +80,14 @@ export class ProfileController {
 							deletedProfile,
 						},
 					})
-					.status(200);
-			else
-				response
-					.sendStatus(400);
-		}
-		catch (e) {
+					.status(200)
+			else response.sendStatus(400)
+		} catch (e) {
 			response
 				.json({
 					e: e.message,
 				})
-				.status(500);
+				.status(500)
 		}
 	}
 }
