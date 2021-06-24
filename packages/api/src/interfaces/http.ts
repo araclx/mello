@@ -49,11 +49,6 @@ export class httpInterface {
 
 	private routing() {
 		this.app.use('/profiles', authenticate, new ProfileService().router)
-		this.app.get('/', (_, res) => {
-			res.json({
-				message: 'Hello World!',
-			})
-		})
 	}
 
 	private errorHandling() {

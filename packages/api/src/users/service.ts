@@ -12,9 +12,9 @@ export class ProfileService {
 
 	public routes() {
 		this.router.get('/', this.controller.getAll)
-		this.router.get('/profile', this.controller.getProfile)
+		this.router.get('/:id', this.controller.getProfile)
 		this.router.post('/', this.controller.createProfile)
-		this.router.post('/update', this.controller.updateProfile)
-		this.router.post('/delete', this.controller.deleteProfile)
+		this.router.post('/update/:id', this.controller.updateProfile)
+		this.router.post('/delete/:id', this.controller.deleteProfile)
 	}
 }

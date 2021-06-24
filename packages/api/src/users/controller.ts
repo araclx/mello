@@ -8,11 +8,11 @@ export class ProfileController {
 		response.json(data)
 	}
 
-	public async getProfile(request: Request, response) {
-		const { returnProfileFromDatabase } = new ProfileAction()
-
+	public async getProfile(request: Request, response: Response) {
+		const { returnProfileFromDatabase } = new ProfileAction();
+		
 		try {
-			const profile = await returnProfileFromDatabase(request.payload)
+			const profile = await returnProfileFromDatabase(Number.parseInt(request.params.id));
 			if (profile)
 				response
 					.json({
@@ -53,7 +53,7 @@ export class ProfileController {
 		const { updateProfile } = new ProfileAction()
 
 		try {
-			const updatedProfile = await updateProfile(request.payload)
+			const updatedProfile = await updateProfile(Number.parseInt(request.params.id), request.body);
 			response
 				.json({
 					data: updatedProfile,
@@ -69,10 +69,9 @@ export class ProfileController {
 	}
 
 	public async deleteProfile(request: Request, response: Response) {
-		const { deleteProfile } = new ProfileAction()
-
+		const { deleteProfile } = new ProfileAction();
 		try {
-			const deletedProfile = await deleteProfile(request.payload)
+			const deletedProfile = await deleteProfile(Number.parseInt(request.params.id));
 			if (deletedProfile)
 				response
 					.json({
