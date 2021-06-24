@@ -8,9 +8,9 @@ export class ProfileAction {
 	}
 
 	public async returnProfileFromDatabase(id: number) {
-		const prisma = new PrismaClient();
-		const profile = await prisma.profile.findUnique({ where: { id } });
-		return profile;
+		const prisma = new PrismaClient()
+		const profile = await prisma.profile.findUnique({ where: { id } })
+		return profile
 	}
 
 	public async createNewProfile(newUserDataPayload) {
@@ -22,17 +22,17 @@ export class ProfileAction {
 	}
 
 	public async updateProfile(id: number, dataToUpdate: any) {
-		const prisma = new PrismaClient();
+		const prisma = new PrismaClient()
 		const updatedProfile = await prisma.profile.update({
 			where: { id },
 			data: dataToUpdate,
-		});
-		return updatedProfile;
+		})
+		return updatedProfile
 	}
-	
+
 	public async deleteProfile(id: number) {
-		const prisma = new PrismaClient();
-		const deletedProfile = await prisma.profile.delete({ where: { id } });
-		return deletedProfile;
+		const prisma = new PrismaClient()
+		const deletedProfile = await prisma.profile.delete({ where: { id } })
+		return deletedProfile
 	}
 }
