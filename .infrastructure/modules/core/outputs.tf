@@ -100,19 +100,6 @@ output "k8s_cluster_nodes_taint_effect" {
   value = [digitalocean_kubernetes_cluster.this.node_pool[0].taint[*].effect]
 }
 
-# Loadbalancer
-output "loadbalancer_id" {
-  value = digitalocean_loadbalancer.this[*].id
-}
-
-output "loadbalancer_urn" {
-  value = digitalocean_loadbalancer.this[*].urn
-}
-
-output "loadbalancer_ip" {
-  value = digitalocean_loadbalancer.this[*].ip
-}
-
 # Firewall
 output "firewall_id" {
   value = digitalocean_firewall.this.id

@@ -6,7 +6,10 @@ generate "provider" {
   path      = "provider_do.tf"
   if_exists = "overwrite"
   contents  = <<EOF
-variable "do_token" {}
+variable "do_token" {
+  description = "Provide DO token in environment variable: TF_VAR_do_token=<token> "
+  sensitive = true
+}
 
 provider "digitalocean" {
   token = var.do_token
@@ -22,8 +25,8 @@ inputs = {
   region = "fra1"
 
   // VPC
-  vpc_name = "mello-vpc-stage"
-  cidr     = "192.168.10.0/24"
+  vpc_name = "mello-stage"
+  cidr     = "192.168.50.0/24"
 
   // Kubernetes
   cluster_name = "mello-cluster-stage"
@@ -32,25 +35,9 @@ inputs = {
 
   // Node pool
   pool_name       = "mello-pool-stage"
-  pool_size       = "s-1vcpu-2gb"
+  pool_size       = "s-2vcpu-2gb"
   pool_node_count = 1
   pool_tags       = ["mello", "stage"]
-
-  // Loadbalancer
-  enable_lb           = true
-  lb_name             = "mello-lb-stage"
-  redirect_http_https = false
-
-  lb_entry_port     = 3600
-  lb_entry_protocol = "tcp"
-
-  lb_target_port     = 3600
-  lb_target_protocol = "tcp"
-
-  lb_sticky_session_type = "none"
-
-  lb_healthcheck_port     = 3600
-  lb_healthcheck_protocol = "tcp"
 
   // Firewall
   firewall_name                = "firewall-mello-stage"

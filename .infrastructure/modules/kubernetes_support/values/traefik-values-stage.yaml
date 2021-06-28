@@ -29,13 +29,13 @@ rollingUpdate:
 #
 providers:
   kubernetesCRD:
-    enabled: true
+    enabled: false
     namespaces: []
   kubernetesIngress:
     enabled: true
     # labelSelector: environment=production,method=traefik
     namespaces:
-      - "mello-stage"
+      - "default"
       
 volumes: []
 additionalVolumeMounts: []
@@ -80,10 +80,29 @@ ports:
   websecure:
     port: 8443
     expose: true
-    exposedPort: 443
+    exposedPort: 3600
     protocol: TCP
 
 tlsOptions: {}
+
+service:
+  enabled: true
+  type: LoadBalancer
+  # Additional annotations (e.g. for cloud provider specific config)
+  annotations: {}
+  # Additional service labels (e.g. for filtering Service by custom labels)
+  labels: {}
+  # Additional entries here will be added to the service spec. Cannot contains
+  # type, selector or ports entries.
+  spec: {}
+    # externalTrafficPolicy: Cluster
+    # loadBalancerIP: "1.2.3.4"
+    # clusterIP: "2.3.4.5"
+  loadBalancerSourceRanges:
+    # - 192.168.50.0/24
+    # - 172.16.0.0/16
+  externalIPs: []
+    # - 1.2.3.4
 
 hostNetwork: false
 
@@ -94,11 +113,11 @@ rbac:
 
 resources:
   requests:
-    cpu: "10m"
-    memory: "50Mi"
+    cpu: '10m'
+    memory: '50Mi'
   limits:
-    cpu: "250m"
-    memory: "150Mi"
+    cpu: '100m'
+    memory: '150Mi'
 
 # Set the container security context
 securityContext:
