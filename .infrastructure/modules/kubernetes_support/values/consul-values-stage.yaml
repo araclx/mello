@@ -1,6 +1,6 @@
 global:
   enabled: true
-  datacenter: mello-dc-stage
+  datacenter: dc-mello-stage
 server:
   replicas: 1
   resources:
@@ -9,10 +9,11 @@ server:
       cpu: '10m'
     limits:
       memory: '256Mi'
-      cpu: '200m'
+      cpu: '100m'
   securityContext:
     runAsNonRoot: false
     runAsUser: 0
+  storage: 1Gi
 connectInject:
   enabled: true
 controller:
