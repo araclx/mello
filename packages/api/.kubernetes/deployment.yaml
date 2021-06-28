@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mello-api-deployment
+  name: deployment-mello-api
 spec:
   replicas: 1
   selector:
@@ -11,6 +11,9 @@ spec:
     metadata:
       labels:
         app: mello-api
+      annotations:
+        'consul.hashicorp.com/connect-inject': 'true'
+        'consul.hashicorp.com/connect-service-upstreams': 'minio-svc:9000'
     spec:
       containers:
       - name: mello-api
@@ -18,3 +21,24 @@ spec:
         ports:
         - containerPort: 3600
           name: tcp
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: tcp
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: tcp
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        startupProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: tcp
+          failureThreshold: 30
+          periodSeconds: 10

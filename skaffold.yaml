@@ -1,7 +1,7 @@
 apiVersion: skaffold/v2alpha4
 kind: Config
 metadata:
-  name: mello-services
+  name: services-mello
 build:
   artifacts:
     - image: araclx/mello-api
@@ -14,3 +14,4 @@ deploy:
       # api
       - packages/api/.kubernetes/deployment.yaml
       - packages/api/.kubernetes/svc.yaml
+      - packages/api/.kubernetes/ingress.yaml

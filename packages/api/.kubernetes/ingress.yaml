@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-mello-api
+spec:
+  rules:
+  - http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              Name: svc-mello-api
+              port: 
+                number: 3600
