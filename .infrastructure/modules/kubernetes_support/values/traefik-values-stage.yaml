@@ -82,15 +82,17 @@ ports:
     expose: true
     exposedPort: 3600
     protocol: TCP
+    nodeport: 32443
 
 tlsOptions: {}
 
 service:
   enabled: true
-  type: LoadBalancer
+  type: NodePort
   # Additional annotations (e.g. for cloud provider specific config)
-  annotations: {}
-  # Additional service labels (e.g. for filtering Service by custom labels)
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-name: "lb-mello-stage"
+    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
   labels: {}
   # Additional entries here will be added to the service spec. Cannot contains
   # type, selector or ports entries.

@@ -30,7 +30,7 @@ inputs = {
 
   // Kubernetes
   cluster_name = "mello-cluster-stage"
-  k8s_version  = "1.20.7-do.0"
+  k8s_version  = "1.21.2-do.1"
   cluster_tags = ["mello", "stage"]
 
   // Node pool
