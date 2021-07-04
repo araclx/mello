@@ -91,3 +91,18 @@ variable "firewall_inbound_ports_r1" {
   type    = string
   default = "1-65535"
 }
+
+// CI
+variable "ci_token" {
+  type = string
+  description = "Provide CircleCI api token in environment variable: TF_VAR_ci_token=<token>"
+  default = ""
+  sensitive = true
+}
+
+variable "ci_context_uuid" {
+  type = string
+  description = "Provide context (e.g. MELLO-CI) uuid in environment variable: TF_VAR_ci_context_uuid=<token>"
+  default = ""
+  sensitive = true
+}
