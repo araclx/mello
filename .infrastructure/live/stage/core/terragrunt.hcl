@@ -2,6 +2,22 @@ include {
   path = find_in_parent_folders()
 }
 
+generate "remote_state" {
+  path      = "backend.tf"
+  if_exists = "overwrite_terragrunt"
+  contents = <<EOF
+terraform {
+  backend "remote" {
+    organization = "muertix"
+
+    workspaces {
+      name = "mello-stage-core"
+    }
+  }
+}
+EOF
+}
+
 generate "provider" {
   path      = "provider_do.tf"
   if_exists = "overwrite"
