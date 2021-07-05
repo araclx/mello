@@ -52,3 +52,11 @@ resource "digitalocean_firewall" "this" {
     // source_load_balancer_uids = digitalocean_loadbalancer.*.id
   }
 }
+
+resource "digitalocean_project" "this" {
+  name        = "mello-${var.env}"
+  description = "A project to represent development resources."
+  purpose     = "Web Application"
+  environment = var.env
+  resources   = [digitalocean_kubernetes_cluster.this.urn]
+}

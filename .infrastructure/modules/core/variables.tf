@@ -10,11 +10,11 @@ variable "region" {
 
 variable "env" {
   type    = string
-  default = "stage"
+  default = "staging"
 
   validation {
-    condition     = contains(["stage", "prod"], var.env)
-    error_message = "Values can only be \"stage\", \"prod\"."
+    condition     = contains(["staging", "production"], var.env)
+    error_message = "Values can only be \"staging\", \"production\"."
   }
 }
 

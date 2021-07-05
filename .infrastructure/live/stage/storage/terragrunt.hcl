@@ -36,11 +36,11 @@ provider "digitalocean" {
 }
 
 provider "kubernetes" {
-  config_path = "/var/kubeconfigs/mello/config_mello-stage"
+  config_path = "/var/kubeconfigs/mello/config_mello-staging"
 }
 
 provider "kubectl" {
-  config_path = "/var/kubeconfigs/mello/config_mello-stage"
+  config_path = "/var/kubeconfigs/mello/config_mello-staging"
 }
 EOF
 }

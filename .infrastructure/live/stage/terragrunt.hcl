@@ -1,3 +1,3 @@
 inputs = {
-  env = "stage"
+  env = "staging"
 }

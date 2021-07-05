@@ -21,7 +21,7 @@ resource "null_resource" "minio_operator" {
 }
 
 data "kubectl_file_documents" "minio_tenant" {
-    content = file("${path.module}/tenants/${var.env}-tenant.yaml")
+    content = file("${path.module}/tenants/tenant-${var.env}.yaml")
 }
 
 resource "kubectl_manifest" "minio_tenant" {

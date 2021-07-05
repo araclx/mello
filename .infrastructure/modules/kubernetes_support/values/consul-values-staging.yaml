@@ -1,6 +1,6 @@
 global:
   enabled: true
-  datacenter: dc-mello-stage
+  datacenter: dc-mello-staging
 server:
   replicas: 1
   resources:
