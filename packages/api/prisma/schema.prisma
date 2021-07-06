@@ -13,26 +13,27 @@ generator client {
 model Profile {
   id        Int      @id @default(autoincrement())
   username  String   @unique
+  avatar String
   firstName String
   lastName  String
   email     String
-  gender    Gender
+  gender    Gender?
   height    Int
   weight    Int
-  birthdate DateTime
+  birthdate DateTime?
   hairColor String
   eyeColor  String
   biography String
-  lastLogin DateTime
+  lastLogin DateTime?
   location String
-  mbti      MBTI
-  hobbys    Hobby[]  @relation(references: [id])
+  // mbti      MBTI
+  // hobbys    Hobby[]  @relation(references: [id])
 }
 
 model Hobby {
   id       Int       @id @default(autoincrement())
   name     String
-  profiles Profile[] @relation(references: [id])
+  // profiles Profile[] @relation(references: [id])
 }
 
 enum Role {
