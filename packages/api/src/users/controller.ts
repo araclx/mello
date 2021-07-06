@@ -36,7 +36,7 @@ export class ProfileController {
 		let newProfile
 
 		try {
-			newProfile = await createNewProfile(request.payload, request.body['avatar']);
+			newProfile = await createNewProfile(request.payload, request.body['avatar'])
 			response
 				.json({
 					data: newProfile,

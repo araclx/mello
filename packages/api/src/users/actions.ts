@@ -14,7 +14,7 @@ export class ProfileAction {
 	}
 
 	public async createNewProfile(newUserDataPayload, pathToAvatar) {
-		newUserDataPayload.avatar = pathToAvatar;
+		newUserDataPayload.avatar = pathToAvatar
 		const prisma = new PrismaClient()
 		const newProfile = await prisma.profile.create({
 			data: newUserDataPayload,
