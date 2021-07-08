@@ -21,11 +21,11 @@ resource "null_resource" "minio_operator" {
 }
 
 data "kubectl_file_documents" "minio_tenant" {
-    content = file("${path.module}/tenants/tenant-${var.env}.yaml")
+  content = file("${path.module}/tenants/tenant-${var.env}.yaml")
 }
 
 resource "kubectl_manifest" "minio_tenant" {
-  count = length(data.kubectl_file_documents.minio_tenant.documents)
+  count     = length(data.kubectl_file_documents.minio_tenant.documents)
   yaml_body = element(data.kubectl_file_documents.minio_tenant.documents, count.index)
 
   depends_on = [

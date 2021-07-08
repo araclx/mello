@@ -10,11 +10,11 @@ variable "env" {
 
 # Minio
 variable "minio_version" {
-  type = string
+  type    = string
   default = "4.1.2"
 }
 
 variable "node_name" {
-  type = string
+  type    = string
   default = ""
 }

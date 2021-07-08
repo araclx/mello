@@ -5,7 +5,7 @@ include {
 generate "remote_state" {
   path      = "backend.tf"
   if_exists = "overwrite_terragrunt"
-  contents = <<EOF
+  contents  = <<EOF
 terraform {
   backend "remote" {
     organization = "muertix"

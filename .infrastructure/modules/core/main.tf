@@ -29,14 +29,14 @@ resource "local_file" "this" {
 // CircleCI base64 encoded kubeconfig in context env
 resource "null_resource" "set_kubeconfig_env" {
   provisioner "local-exec" {
-      command = <<EOT
+    command = <<EOT
       curl --request PUT \
       --url https://circleci.com/api/v2/context/${var.ci_context_uuid}/environment-variable/KUBECONFIG_DATA \
       --header 'Circle-Token: ${var.ci_token}' \
       --header 'content-type: application/json' \
       --data '{"value":"${base64encode(digitalocean_kubernetes_cluster.this.kube_config[0].raw_config)}"}'
       EOT
-      }
+  }
   depends_on = [local_file.this]
 }
 
@@ -47,8 +47,8 @@ resource "digitalocean_firewall" "this" {
   droplet_ids = digitalocean_kubernetes_cluster.this.node_pool[0].nodes[*].droplet_id
   tags        = var.firewall_tags
   inbound_rule {
-    protocol                  = var.firewall_inbound_protocol_r1
-    port_range                = var.firewall_inbound_ports_r1
+    protocol   = var.firewall_inbound_protocol_r1
+    port_range = var.firewall_inbound_ports_r1
     // source_load_balancer_uids = digitalocean_loadbalancer.*.id
   }
 }
