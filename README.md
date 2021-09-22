@@ -10,11 +10,15 @@ tho). The main idea behind mello is to remove limits associated with social netw
 wasting time on people that bascially aren't in your type or doesn't have any valule.
 
 Actually in this project we don't give an signle fuck about valuation, monetization and other kind of financial crap because Qhfte (another shitty product of
-Araclx, Inc) is funding everything at all.
+Araclx, Inc) is funding everything at all, well afer short while - we're an edge of bankrupcy XD
 
 ## Usage
 
 **You don't lmao**
+
+```
+docker-compose -f ".docker/docker-compose.local.yaml" up -d --build
+```
 
 ## Documentation
 

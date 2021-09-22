@@ -11,6 +11,9 @@ export const PORT = Number.parseInt(process.env.MELLO_PORT!) || 1337
 export const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN!
 export const AUTH0_AUDIENCE = process.env.AUTH0_AUDIENCE!
 
+// Database Configuration
+export const MONGODB_URI = process.env.MONGODB_URI! || 'mongodb://localhost:27017/experimentalEnvironment'
+
 export const NODE_ENV = process.env.NODE_ENV! || 'development'
 
 // ENV-based Lifecycle Variables

@@ -6,6 +6,17 @@
 version: '3.8'
 
 services:
+   postgres:
+      container_name: mello-postgres
+      image: postgres:latest
+      environment:
+         POSTGRES_PASSWORD: mello
+   api:
+      container_name: mello-api
+      image: mello/api:dev
+      build: ../packages/api
+      environment:
+         DATABASE_URL: postgresql://postgres:admin@postgres:5432/test?sslmode=disable
    # To initialize this service you need to use an one command
    # docker exec -it mello-cockroach ./cockroach init --insecure
    # at the first time

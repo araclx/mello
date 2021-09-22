@@ -12,6 +12,8 @@ import { ProfileService } from '../users/service'
 import { HOST, isDevelopment, PORT } from '../utils/env'
 import { authenticate } from '../middleware/authenticate'
 
+import { mongooseService } from 'services/mongoose'
+
 export class httpInterface {
 	public app: express.Application
 
@@ -20,6 +22,7 @@ export class httpInterface {
 		this.middleware()
 		this.routing()
 		this.errorHandling()
+		this.services()
 	}
 
 	/** Core function dedicated for running Node.js server on preffered port from .env,
@@ -53,5 +56,9 @@ export class httpInterface {
 
 	private errorHandling() {
 		if (isDevelopment) this.app.use(errorhandler({ log: true }))
+	}
+
+	private async services() {
+		await mongooseService()
 	}
 }

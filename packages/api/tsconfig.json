@@ -24,6 +24,7 @@
 		"skipLibCheck": true,
 		"allowJs": true,
 		"outDir": "dist",
+		"baseUrl": "./src",
 		"typeRoots": ["@types", "./node_modules/@types"]
 	}
 }

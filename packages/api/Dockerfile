@@ -28,10 +28,6 @@ ENV NODE_ENV 'production'
 COPY package.json .
 RUN yarn install
 
-# Prisma-related Flow
-RUN npx prisma generate
-# RUN npx prisma db push --preview-feature
-
 # Copy source of application
 COPY . .
 

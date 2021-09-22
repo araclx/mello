@@ -23,7 +23,7 @@ export class ProfileController {
 		} catch (e) {
 			response
 				.json({
-					e: e.message,
+					error: e,
 				})
 				.status(500)
 		}
@@ -44,7 +44,7 @@ export class ProfileController {
 				.status(200)
 		} catch (e) {
 			response.json({
-				e: e.message,
+				e: e,
 			})
 		}
 	}
@@ -62,7 +62,7 @@ export class ProfileController {
 		} catch (e) {
 			response
 				.json({
-					e: e.message,
+					e: e,
 				})
 				.status(500)
 		}
@@ -84,7 +84,7 @@ export class ProfileController {
 		} catch (e) {
 			response
 				.json({
-					e: e.message,
+					e: e,
 				})
 				.status(500)
 		}
