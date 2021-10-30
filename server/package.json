@@ -1,0 +1,12 @@
+{
+  "name": "@mello/server",
+  "version": "0.0.0-dev",
+  "main": "index.js",
+  "repository": "https://github.com/araclx/mello.git",
+  "author": "Jakub Olan <jakub.jay.olan@gmail.com>",
+  "license": "GNU-3",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}

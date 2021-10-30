@@ -1,0 +1,10 @@
+{
+  "name": "@araclx/mello",
+  "version": "0.0.1",
+  "description": "An privacy-focused social media platform.",
+  "main": "index.js",
+  "repository": "https://github.com/araclx/mello.git",
+  "author": "Jakub Olan <jakub.jay.olan@gmail.com>",
+  "license": "GNU",
+  "private": true
+}
