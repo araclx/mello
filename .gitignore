@@ -1,5 +1,0 @@
-node_modules
-.DS_Store
-packages/api/prisma/migrations
-packages/api/dist
-.env
