@@ -1,1 +1,3 @@
-export const fn = (): string => 'foo';
+export const fn = (): string => 'foo'
+
+console.log('Hello World')
