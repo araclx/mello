@@ -4,4 +4,4 @@ export default {
 	failFast: true,
 	concurrency: 5,
 	files: ['__tests__/**/*'],
-}
+};

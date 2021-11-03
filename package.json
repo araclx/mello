@@ -8,7 +8,7 @@
 	"license": "GNU",
 	"private": true,
 	"scripts": {
-		"test": "ava"
+		"test": "xo --fix && ava"
 	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.0",
