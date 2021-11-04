@@ -1,11 +1,11 @@
-import express from 'express'
+import server from './interfaces/http'
 import getPort from 'get-port'
 
-const app = express()
-const port = 3000
+export async function createHttpServer() {
+	let generatedPort = await getPort()
+	server.listen(generatedPort, () => {
+		console.log(`Server is listening on port ${generatedPort}`)
+	})
+}
 
-app.get('/hey', (request, res) => res.json({ message: 'hey' }))
-
-export const fn = (): string => 'foo'
-
-export default app
+createHttpServer()
