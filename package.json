@@ -8,7 +8,7 @@
 	"license": "GNU",
 	"private": true,
 	"scripts": {
-		"test": "ava",
+		"test": "c8 ava",
 		"build": "webpack"
 	},
 	"devDependencies": {
@@ -20,11 +20,13 @@
 		"@types/test-listen": "^1.1.0",
 		"@types/xo": "^0.39.1",
 		"ava": "^4.0.0-rc.1",
+		"c8": "^7.10.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"friendly-errors-webpack-plugin": "^1.7.0",
 		"husky": "^7.0.4",
 		"nodemon-webpack-plugin": "^4.5.2",
 		"prettier": "^2.4.1",
+		"test-listen": "^1.1.0",
 		"ts-loader": "^9.2.6",
 		"ts-node": "^10.4.0",
 		"tsconfig-paths-webpack-plugin": "^3.5.1",
@@ -32,8 +34,7 @@
 		"webpack": "^5.61.0",
 		"webpack-cli": "^4.9.1",
 		"webpackbar": "^5.0.0-3",
-		"xo": "^0.46.4",
-		"test-listen": "^1.1.0"
+		"xo": "^0.46.4"
 	},
 	"peerDependencies": {},
 	"dependencies": {

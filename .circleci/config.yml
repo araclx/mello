@@ -10,6 +10,11 @@ orbs:
 workflows:
    dev:
       jobs:
+         - checkout
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
+              post-steps:
+                 - codecov/upload
+# Envars Reqiurements
+# CODECOV_TOKEN, stands for https://codecov.com write token.
