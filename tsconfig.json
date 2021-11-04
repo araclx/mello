@@ -11,6 +11,7 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"declaration": false,
+		"baseUrl": "./lib",
 		"pretty": true,
 		"newLine": "lf",
 		"stripInternal": true,

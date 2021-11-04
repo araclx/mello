@@ -8,12 +8,12 @@
 	"license": "GNU",
 	"private": true,
 	"scripts": {
-		"test": "xo --fix && ava",
+		"test": "ava",
 		"build": "webpack"
 	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.0",
-		"ava": "^3.15.0",
+		"ava": "^4",
 		"eslint-plugin-prettier": "^4.0.0",
 		"friendly-errors-webpack-plugin": "^1.7.0",
 		"husky": "^7.0.4",
@@ -29,5 +29,10 @@
 		"xo": "^0.46.4"
 	},
 	"peerDependencies": {},
-	"dependencies": {}
+	"dependencies": {
+		"express": "^4.17.1",
+		"get-port": "^6.0.0",
+		"got": "^11.8.2",
+		"test-listen": "^1.1.0"
+	}
 }

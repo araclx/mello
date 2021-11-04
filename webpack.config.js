@@ -1,12 +1,12 @@
 /* Well, it's tricky to explain, why we're really using webpack. I was using it in most of my past projects and there aren't reasons why should not use it. */
 
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-const bar = require('webpackbar')
-const errors = require('friendly-errors-webpack-plugin')
-const nodemon = require('nodemon-webpack-plugin')
-const tspaths = require('tsconfig-paths-webpack-plugin')
+const bar = require('webpackbar');
+const errors = require('friendly-errors-webpack-plugin');
+const nodemon = require('nodemon-webpack-plugin');
+const tspaths = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
 	entry: './lib/index.ts',
@@ -46,4 +46,4 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
-}
+};
