@@ -1,10 +1,13 @@
 import server from './interfaces/http'
 import getPort from 'get-port'
+import { MELLO_PORT, HOST } from 'utils/env'
 
 export async function createHttpServer() {
-	let generatedPort = await getPort()
-	server.listen(generatedPort, () => {
-		console.log(`Server is listening on port ${generatedPort}`)
+	let PORT = await getPort({
+		port: MELLO_PORT,
+	})
+	server.listen(PORT, () => {
+		console.log(`Server is alive on http://${HOST}:${PORT}`)
 	})
 }
 

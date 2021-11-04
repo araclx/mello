@@ -19,7 +19,22 @@ interface HeyData {
 	message: string
 }
 
-test.serial('GET /', async (t) => {
+test.serial('GET /hey', async (t) => {
 	const data: HeyData = await got('hey', { prefixUrl: t.context.url }).json()
 	t.is(data.message, 'hey')
+})
+
+test.serial('POST /hey', async (t) => {
+	const testParameter = 'Jay'
+
+	const request: any = await got
+		.post('hey', {
+			prefixUrl: t.context.url,
+			json: {
+				name: testParameter,
+			},
+		})
+		.json()
+
+	t.is(request.message, `hello ${testParameter}`)
 })

@@ -13,9 +13,14 @@
 	},
 	"devDependencies": {
 		"@ava/typescript": "^3.0.0",
+		"@types/compression": "^1.7.2",
+		"@types/cors": "^2.8.12",
+		"@types/csurf": "^1.11.2",
 		"@types/eslint-plugin-prettier": "^3.1.0",
 		"@types/express": "^4.17.13",
 		"@types/friendly-errors-webpack-plugin": "^0.1.4",
+		"@types/morgan": "^1.9.3",
+		"@types/multer": "^1.4.7",
 		"@types/prettier": "^2.4.1",
 		"@types/test-listen": "^1.1.0",
 		"@types/xo": "^0.39.1",
@@ -44,6 +49,7 @@
 		"express": "^5.0.0-alpha.8",
 		"get-port": "^6.0.0",
 		"got": "^11.8.2",
+		"joi": "^17.4.2",
 		"morgan": "^1.10.0",
 		"multer": "^1.4.3",
 		"session": "^0.1.0"
