@@ -10,7 +10,6 @@ orbs:
 workflows:
    dev:
       jobs:
-         - checkout
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
