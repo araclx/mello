@@ -1,5 +1,6 @@
 import server from './interfaces/http'
 import getPort from 'get-port'
+import consola from 'consola'
 import { MELLO_PORT, HOST } from 'utils/env'
 
 export async function createHttpServer() {
@@ -7,7 +8,7 @@ export async function createHttpServer() {
 		port: MELLO_PORT,
 	})
 	server.listen(PORT, () => {
-		console.log(`Server is alive on http://${HOST}:${PORT}`)
+		consola.success(`Server is alive on http://${HOST}:${PORT}`)
 	})
 }
 

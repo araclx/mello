@@ -7,6 +7,16 @@ orbs:
    postman: postman/newman@0.0.2
    k6: k6io/test@1.1.1
 
+jobs:
+   release:
+      executor:
+         name: node/default
+         tag: 17.0.1
+      steps:
+         - checkout
+         - node/install-packages
+         - run: yarn se-release
+
 workflows:
    dev:
       jobs:
@@ -15,5 +25,18 @@ workflows:
               version: '17.0.1'
               post-steps:
                  - codecov/upload
+   bleeding:
+      jobs:
+         - test
+         - release:
+              requires:
+                 - 'test'
+      triggers:
+         - schedule:
+              cron: '30 12 * * 5'
+              filters:
+                 branches:
+                    only:
+                       - main
 # Envars Reqiurements
 # CODECOV_TOKEN, stands for https://codecov.com write token.

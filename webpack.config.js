@@ -49,6 +49,7 @@ const baseConfig = {
 	},
 	externals: {
 		express: 'commonjs express',
+		consola: 'commonjs consola',
 	},
 }
 const productionConfig = {
@@ -81,7 +82,7 @@ const developmentConfig = {
 	],
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || 'CI') {
 	module.exports = merge(baseConfig, productionConfig)
 } else {
 	module.exports = merge(baseConfig, developmentConfig)
