@@ -27,10 +27,10 @@ workflows:
                  - codecov/upload
    bleeding:
       jobs:
-         - test
+         - node/test
          - release:
               requires:
-                 - 'test'
+                 - 'node/test'
       triggers:
          - schedule:
               cron: '30 12 * * 5'
