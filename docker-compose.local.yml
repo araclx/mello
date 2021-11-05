@@ -1,7 +1,17 @@
 version: '3.9'
+
 services:
    mongodb:
       container_name: mello-mongodb
-      image: mongo
+      image: mongo:latest
       ports:
          - '27017:27017'
+   minio:
+      container_name: mello-minio
+      image: minio/minio:edge
+      command: server /data
+      ports:
+         - '9000:9000'
+      environment:
+         - MINIO_ROOT_USER=mello
+         - MINIO_ROOT_PASSWORD=12345678
