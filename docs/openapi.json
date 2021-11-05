@@ -1,12 +1,22 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "openapi",
-    "version": "1.0"
+    "title": "Bleeding Mello Documentation",
+    "version": "0.0.1-dev",
+    "description": "Documentation of `bleeding` channel of our application's API. Most of enpoints contained in this documentation is just the design and will be introduced in future, that's a reason to do not use anything from this right now.",
+    "contact": {
+      "name": "Jay Whitewood",
+      "email": "keinsell@protonmail.com"
+    }
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:1337",
+      "description": "local"
+    },
+    {
+      "url": "https://api.m3llo.co/v1/",
+      "description": "live (future)"
     }
   ],
   "paths": {
@@ -233,9 +243,42 @@
           },
           "lastName": {
             "type": "string"
+          },
+          "birthdate": {
+            "type": "string"
+          },
+          "height": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          }
+        },
+        "x-internal": false
+      },
+      "Hobby": {
+        "title": "Hobby",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "Message": {
+        "title": "Message",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
           }
         }
       }
-    }
-  }
+    },
+    "securitySchemes": {}
+  },
+  "security": []
 }
