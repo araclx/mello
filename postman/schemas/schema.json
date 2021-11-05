@@ -224,6 +224,50 @@
         },
         "description": "Create a new user."
       }
+    },
+    "/hey": {
+      "get": {
+        "summary": "Hello World",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-hey",
+        "description": "Returns an simple hello world."
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-hey",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -232,6 +276,7 @@
         "title": "User",
         "type": "object",
         "description": "Model of User at our platform.",
+        "x-internal": false,
         "properties": {
           "id": {
             "type": "string",
@@ -255,9 +300,36 @@
           },
           "gender": {
             "type": "string"
+          },
+          "profilePicture": {
+            "type": "string"
+          },
+          "photos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "string"
           }
         },
-        "x-internal": false
+        "x-examples": {
+          "example-1": {
+            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+            "firstName": "string",
+            "lastName": "string",
+            "birthdate": "string",
+            "height": "string",
+            "weight": "string",
+            "gender": "string",
+            "profilePicture": "string",
+            "photos": [
+              "string"
+            ],
+            "location": "string"
+          }
+        }
       },
       "Hobby": {
         "title": "Hobby",
@@ -265,8 +337,18 @@
         "properties": {
           "id": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "related": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hobby"
+            }
           }
-        }
+        },
+        "description": "Hobbies are points of interest for Users at our platform, Users are able to add hobbies to their profile and with this informations they are able to source new connections around the world."
       },
       "Message": {
         "title": "Message",
@@ -275,10 +357,25 @@
           "id": {
             "type": "string"
           }
+        },
+        "description": ""
+      },
+      "Post": {
+        "title": "Post",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User"
+          }
         }
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {},
+    "requestBodies": {}
   },
   "security": []
 }
