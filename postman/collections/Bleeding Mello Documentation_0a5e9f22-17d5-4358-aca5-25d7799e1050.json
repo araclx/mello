@@ -1,0 +1,456 @@
+{
+    "info": {
+        "_postman_id": "f939afc0-2802-4330-919a-8e7ff1c53004",
+        "name": "Bleeding Mello Documentation",
+        "description": "Documentation of `bleeding` channel of our application's API. Most of enpoints contained in this documentation is just the design and will be introduced in future, that's a reason to do not use anything from this right now.\n\nContact Support:\n Name: Jay Whitewood\n Email: keinsell@protonmail.com",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "users/{user Id}",
+            "item": [
+                {
+                    "name": "Get User Info by User ID",
+                    "id": "1a30adda-0c99-48c1-abf4-eb3444001b11",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":userId"
+                            ],
+                            "variable": [
+                                {
+                                    "id": "1c3c7669-f849-4cda-9a24-ddceb59f3b6f",
+                                    "key": "userId",
+                                    "value": "6249554",
+                                    "description": "(Required) Id of an existing user."
+                                }
+                            ]
+                        },
+                        "description": "Retrieve the information of the user with the matching user ID."
+                    },
+                    "response": [
+                        {
+                            "id": "9a4e589a-c88b-4ebc-950a-c7e095d96683",
+                            "name": "User Found",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "6249554",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "{\n \"id\": 142,\n \"firstName\": \"Alice\",\n \"lastName\": \"Smith\",\n \"email\": \"alice.smith@gmail.com\",\n \"dateOfBirth\": \"1997-10-31\",\n \"emailVerified\": true,\n \"signUpDate\": \"2019-08-24\"\n}"
+                        },
+                        {
+                            "id": "ea949c13-868b-4a88-8fd5-b13247b95719",
+                            "name": "User Not Found",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "6249554",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update User Information",
+                    "id": "d462e31d-f0b0-410d-825c-2182071e42a1",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"firstName\": \"Rebecca\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/users/:userId",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                ":userId"
+                            ],
+                            "variable": [
+                                {
+                                    "id": "ccb7c1a6-c07d-4fab-ac40-2cffe4e364f5",
+                                    "key": "userId",
+                                    "value": "6249554",
+                                    "description": "(Required) Id of an existing user."
+                                }
+                            ]
+                        },
+                        "description": "Update the information of an existing user."
+                    },
+                    "response": [
+                        {
+                            "id": "18e1f856-79bd-4b8e-9302-9520949bb3f2",
+                            "name": "User Updated",
+                            "originalRequest": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Rebecca\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "6249554",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "{\n \"id\": 13,\n \"firstName\": \"Rebecca\",\n \"lastName\": \"Baker\",\n \"email\": \"rebecca@gmail.com\",\n \"dateOfBirth\": \"1985-10-02\",\n \"emailVerified\": false,\n \"createDate\": \"2019-08-24\"\n}"
+                        },
+                        {
+                            "id": "9cc13424-a0f1-4c39-aafa-3df6420a9877",
+                            "name": "User Not Found",
+                            "originalRequest": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Rebecca\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "6249554",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        },
+                        {
+                            "id": "2ae7e105-74f2-45aa-a1de-62ea47fbed12",
+                            "name": "Email Already Taken",
+                            "originalRequest": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"firstName\": \"Rebecca\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{baseUrl}}/users/:userId",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        ":userId"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "userId",
+                                            "value": "6249554",
+                                            "description": "(Required) Id of an existing user."
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Conflict",
+                            "code": 409,
+                            "_postman_previewlanguage": "text",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "text/plain"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": ""
+                        }
+                    ]
+                }
+            ],
+            "id": "7af737b5-2637-40fd-b7f3-c6f700737f42"
+        },
+        {
+            "name": "Create New User",
+            "id": "9a7dfb01-52e6-4902-99e7-e0f3f3d404e8",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/user",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "user"
+                    ]
+                },
+                "description": "Create a new user."
+            },
+            "response": [
+                {
+                    "id": "478ae5ec-0d5d-47dc-825c-8701ced9d27b",
+                    "name": "User Created",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"id\": 12,\n \"firstName\": \"Bob\",\n \"lastName\": \"Fellow\",\n \"email\": \"bob.fellow@gmail.com\",\n \"dateOfBirth\": \"1996-08-24\",\n \"emailVerified\": false,\n \"createDate\": \"2020-11-18\"\n}"
+                },
+                {
+                    "id": "40e8f4d8-a3fa-40df-a11e-3c99e693ea12",
+                    "name": "Missing Required Information",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "text",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                },
+                {
+                    "id": "9cb39b93-4411-4587-9cb5-dd54ad62c072",
+                    "name": "Email Already Taken",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"firstName\": \"Bob\",\n    \"lastName\": \"Fellow\",\n    \"email\": \"bob.fellow@gmail.com\",\n    \"dateOfBirth\": \"1996-08-24\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user"
+                            ]
+                        }
+                    },
+                    "status": "Conflict",
+                    "code": 409,
+                    "_postman_previewlanguage": "text",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "text/plain"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "id": "ccb77bf9-a6da-4c03-9092-c80abc209fb0",
+            "key": "baseUrl",
+            "value": "http://localhost:1337",
+            "type": "string"
+        }
+    ]
+}
