@@ -26,3 +26,10 @@ services:
          - INFLUXDB_INIT_PASSWORD=mello
          - INFLUXDB_INIT_ORG=mello
          - INFLUXDB_INIT_BUCKET=mello
+
+   chronograf:
+      container_name: mello-chronograf
+      image: chronograf:latest
+      command: chronograf --influxdb-url=http://influxdb:8086
+      ports:
+         - '8888:8888'
