@@ -15,3 +15,14 @@ services:
       environment:
          - MINIO_ROOT_USER=mello
          - MINIO_ROOT_PASSWORD=12345678
+
+   influxdb:
+      container_name: mello-influxdb
+      image: influxdb:latest
+      ports:
+         - '8086:8086'
+      environment:
+         - INFLUXDB_INIT_USERNAME=mello
+         - INFLUXDB_INIT_PASSWORD=mello
+         - INFLUXDB_INIT_ORG=mello
+         - INFLUXDB_INIT_BUCKET=mello
