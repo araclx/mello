@@ -25,7 +25,10 @@
 		"@types/friendly-errors-webpack-plugin": "^0.1.4",
 		"@types/morgan": "^1.9.3",
 		"@types/multer": "^1.4.7",
+		"@types/passport": "^1.0.7",
+		"@types/passport-local": "^1.0.34",
 		"@types/prettier": "^2.4.1",
+		"@types/semantic-release": "^17.2.2",
 		"@types/test-listen": "^1.1.0",
 		"@types/xo": "^0.39.1",
 		"ava": "^4.0.0-rc.1",
@@ -62,6 +65,8 @@
 		"joi": "^17.4.2",
 		"morgan": "^1.10.0",
 		"multer": "^1.4.3",
+		"passport": "^0.5.0",
+		"passport-local": "^1.0.0",
 		"session": "^0.1.0"
 	}
 }
