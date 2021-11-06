@@ -50,6 +50,7 @@ const baseConfig = {
 	externals: {
 		express: 'commonjs express',
 		consola: 'commonjs consola',
+		keyv: 'commonjs keyv',
 	},
 }
 const productionConfig = {
@@ -63,11 +64,12 @@ const productionConfig = {
 	optimization: {
 		minimizer: [
 			new ESBuildMinifyPlugin({
-				target: 'es2016', // Syntax to compile to (see options below for possible values)
+				target: 'esnext', // Syntax to compile to (see options below for possible values)
 			}),
 		],
 	},
 }
+
 const developmentConfig = {
 	mode: 'development',
 	watch: true,
@@ -82,7 +84,7 @@ const developmentConfig = {
 	],
 }
 
-if (process.env.NODE_ENV === 'production' || 'CI') {
+if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'CI') {
 	module.exports = merge(baseConfig, productionConfig)
 } else {
 	module.exports = merge(baseConfig, developmentConfig)
