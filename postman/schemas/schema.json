@@ -277,11 +277,38 @@
         "type": "object",
         "description": "Model of User at our platform.",
         "x-internal": false,
+        "x-examples": {
+          "example-1": {
+            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+            "firstName": "string",
+            "lastName": "string",
+            "birthdate": "string",
+            "height": "string",
+            "weight": "string",
+            "gender": "string",
+            "profilePicture": "string",
+            "photos": [
+              "string"
+            ],
+            "location": "string"
+          }
+        },
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid",
             "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 6
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
           },
           "firstName": {
             "type": "string"
@@ -312,22 +339,6 @@
           },
           "location": {
             "type": "string"
-          }
-        },
-        "x-examples": {
-          "example-1": {
-            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-            "firstName": "string",
-            "lastName": "string",
-            "birthdate": "string",
-            "height": "string",
-            "weight": "string",
-            "gender": "string",
-            "profilePicture": "string",
-            "photos": [
-              "string"
-            ],
-            "location": "string"
           }
         }
       },

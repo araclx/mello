@@ -16,3 +16,6 @@ if (process.env.MELLO_AUTH_CLIENTID! || process.env.MELLO_AUTH_ISSUER!) {
 export const MELLO_AUTH_SECRET = process.env.MELLO_AUTH_SECRET! || 'devisnotsecure'
 export const MELLO_AUTH_CLIENTID = process.env.MELLO_AUTH_CLIENTID!
 export const MELLO_AUTH_ISSUER = process.env.MELLO_AUTH_ISSUER!
+
+// Database Configuration
+export const MONGODB_URI = process.env.MONGODB_URI! || 'mongodb://localhost:27017/mello'
