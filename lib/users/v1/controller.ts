@@ -1,6 +1,9 @@
 import { Request, Response } from 'express'
 import { User } from './model'
+import { hash } from 'utils/crypto'
 import joi from 'joi'
+import argon2 from 'argon2'
+import bcrypt from 'bcrypt'
 
 export async function createNewUser(req: Request, res: Response) {
 	const createNewUserSchema = joi.object({
@@ -9,10 +12,10 @@ export async function createNewUser(req: Request, res: Response) {
 		password: joi.string().required(),
 	})
 
-	const { error, value } = createNewUserSchema.validate(req.body)
-
+	let { error, value } = createNewUserSchema.validate(req.body)
 	if (error) res.status(400).json({ error: error.message })
 
+	value.password = await hash(value.password)
 	const newUser = new User(value)
 
 	try {
@@ -22,3 +25,13 @@ export async function createNewUser(req: Request, res: Response) {
 		res.status(400).json(error)
 	}
 }
+
+export async function getAllUsers(req: Request, res: Response) {
+	const users = await User.find()
+	res.status(200).json({ data: users })
+}
+
+// ? Do we need another endpoint for chaning passwrord?
+// I think we can use the same one for update and changing pass.
+
+export async function updateUser(req: Request, res: Response) {}
