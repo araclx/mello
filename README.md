@@ -56,3 +56,5 @@ not be tolerated.
 Read our contributing guide to learn about our development process how to propose bugfixes and improvements to build and test your changes to Mello.
 
 ## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Faraclx%2Fmello.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Faraclx%2Fmello?ref=badge_large)
