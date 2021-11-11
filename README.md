@@ -35,6 +35,10 @@ isn't necessary at all for development because we handled default variables.
 We documenting whole back-end code and endpoints using an OpenAPI 3.0 specification which is hosted on Postman under
 [this link](https://documenter.getpostman.com/view/12555920/UVC5EnYw).
 
+### Code Status
+
+[![codecov](https://codecov.io/gh/araclx/mello/branch/main/graph/badge.svg?token=6zaNoyjwtA)](https://codecov.io/gh/araclx/mello)
+
 ## Contributing
 
 The main purpose of this repository is to continue development of server-side features of our platform, making it faster and enriched by new features.
@@ -49,7 +53,5 @@ not be tolerated.
 ### [Contributing Guide]()
 
 Read our contributing guide to learn about our development process how to propose bugfixes and improvements to build and test your changes to Mello.
-
-[![codecov](https://codecov.io/gh/araclx/mello/branch/main/graph/badge.svg?token=6zaNoyjwtA)](https://codecov.io/gh/araclx/mello)
 
 ## License
