@@ -38,6 +38,7 @@ We documenting whole back-end code and endpoints using an OpenAPI 3.0 specificat
 ### Code Status
 
 [![codecov](https://codecov.io/gh/araclx/mello/branch/main/graph/badge.svg?token=6zaNoyjwtA)](https://codecov.io/gh/araclx/mello)
+[![CircleCi](https://circleci.com/gh/araclx/mello.svg?style=svg)](https://circleci.com/gh/araclx/mello)
 
 ## Contributing
 
