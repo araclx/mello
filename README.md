@@ -33,7 +33,7 @@ isn't necessary at all for development because we handled default variables.
 > Remember: Spending 5h on debugging always saving you 5m of reading documentation, gl fellas
 
 We documenting whole back-end code and endpoints using an OpenAPI 3.0 specification which is hosted on Postman under
-[this link](https://www.postman.com/araclx/workspace/mello/documentation/12555920-f939afc0-2802-4330-919a-8e7ff1c53004).
+[this link](https://documenter.getpostman.com/view/12555920/UVC5EnYw).
 
 ## Contributing
 
