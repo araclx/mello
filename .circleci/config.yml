@@ -18,16 +18,13 @@ jobs:
          - run: yarn se-release
 
 workflows:
-   dev:
+   bleeding:
       jobs:
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
               post-steps:
-                 - codecov/upload
-   bleeding:
-      jobs:
-         - node/test
+                 - codecov-upload
          - release:
               requires:
                  - 'node/test'
