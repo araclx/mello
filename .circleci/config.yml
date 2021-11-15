@@ -24,7 +24,7 @@ workflows:
               pkg-manager: yarn
               version: '17.0.1'
               post-steps:
-                 - codecov-upload
+                 - codecov/upload
          - release:
               requires:
                  - 'node/test'
