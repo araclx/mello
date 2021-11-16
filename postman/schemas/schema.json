@@ -20,7 +20,7 @@
     },
     {
       "url": "https://api.m3llo.co/v1/",
-      "description": "live (future)"
+      "description": "live"
     }
   ],
   "paths": {
@@ -228,6 +228,24 @@
           "description": ""
         }
       }
+    },
+    "/v1/users/{userid}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-v1-users-:id"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userid",
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "components": {
@@ -241,35 +259,46 @@
         "properties": {
           "firstName": {
             "type": "string",
-            "description": "Represents first name of specific user."
+            "description": "Represents first name of specific user.",
+            "example": "Jay"
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "example": "Whitewood"
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "example": "1rsdfs293u89fs,sdl;dg;"
           },
           "username": {
             "type": "string",
             "example": "keinsell",
             "minLength": 6,
             "maxLength": 32,
-            "description": "Username is a core recognition thing in our application."
+            "description": "Unique username used across our platform, there is no possibility to have two users with same username. Additionally users don't have option to change their usernames more than once per month."
           },
           "email": {
             "type": "string",
-            "format": "email"
+            "format": "email",
+            "example": "jay.whitewood@gmail.com"
           },
           "birthdate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "10-12-2000"
           },
           "height": {
-            "format": "int32",
-            "type": "number"
+            "type": "number",
+            "exclusiveMinimum": false,
+            "minimum": 110,
+            "maximum": 260,
+            "example": 179,
+            "description": "Reprents height of specific user (used for matching people)"
           },
           "weight": {
-            "type": "number"
+            "type": "number",
+            "example": 65,
+            "description": "Represents weight of specific user."
           },
           "gender": {
             "enum": [
@@ -277,7 +306,8 @@
               "Female",
               "Other"
             ],
-            "type": "number"
+            "type": "number",
+            "description": "I have no damn idea how to make this crap LGBT friendly, so I'll just fuck the social standards."
           },
           "profilePicture": {
             "type": "string"
@@ -375,7 +405,8 @@
     "securitySchemes": {
       "v1/auth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "description": ""
       },
       "v2/auth": {
         "type": "openIdConnect",
