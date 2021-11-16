@@ -54,6 +54,7 @@
 	},
 	"peerDependencies": {},
 	"dependencies": {
+		"argon2": "^0.28.2",
 		"compression": "^1.7.4",
 		"consola": "^2.15.3",
 		"cors": "^2.8.5",

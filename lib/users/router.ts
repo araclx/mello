@@ -4,6 +4,7 @@ import { UserController } from './controller'
 const router = express.Router()
 const userController = new UserController()
 
-router.use('/', userController.getAll)
+router.get('/', userController.getAll)
+router.post('/', userController.createNew)
 
 export default router
