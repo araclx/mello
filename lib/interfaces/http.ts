@@ -2,7 +2,7 @@ import express from 'express'
 import compression from 'compression'
 import cors from 'cors'
 
-import heyRouter from '../v1/hey/router'
+import heyRouter from 'hey/router'
 
 const app = express()
 
