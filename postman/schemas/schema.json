@@ -7,6 +7,10 @@
     "contact": {
       "name": "Jay Whitewood",
       "email": "keinsell@protonmail.com"
+    },
+    "license": {
+      "name": "GNU-3.0",
+      "url": "https://github.com/araclx/mello/blob/main/LICENSE.md"
     }
   },
   "servers": [
@@ -306,13 +310,19 @@
             "format": "date"
           },
           "height": {
-            "type": "integer"
+            "format": "int32",
+            "type": "number"
           },
           "weight": {
-            "type": "integer"
+            "type": "number"
           },
           "gender": {
-            "type": "string"
+            "enum": [
+              "Male",
+              "Female",
+              "Other"
+            ],
+            "type": "number"
           },
           "profilePicture": {
             "type": "string"
@@ -401,7 +411,16 @@
         }
       }
     },
-    "securitySchemes": {},
+    "securitySchemes": {
+      "v1/auth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "v2/auth": {
+        "type": "openIdConnect",
+        "description": ""
+      }
+    },
     "requestBodies": {}
   },
   "security": []
