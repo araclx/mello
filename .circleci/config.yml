@@ -18,25 +18,22 @@ jobs:
          - run: yarn se-release
 
 workflows:
-   dev:
+   bleeding:
       jobs:
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
               post-steps:
                  - codecov/upload
-   bleeding:
-      jobs:
-         - node/test
-         - release:
-              requires:
-                 - 'node/test'
-      triggers:
-         - schedule:
-              cron: '30 12 * * 5'
-              filters:
-                 branches:
-                    only:
-                       - main
+      #    - release:
+      #         requires:
+      #            - 'node/test'
+      # triggers:
+      #    - schedule:
+      #         cron: '30 12 * * 5'
+      #         filters:
+      #            branches:
+      #               only:
+      #                  - main
 # Envars Reqiurements
 # CODECOV_TOKEN, stands for https://codecov.com write token.

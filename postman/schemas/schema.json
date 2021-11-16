@@ -277,22 +277,7 @@
         "type": "object",
         "description": "Model of User at our platform.",
         "x-internal": false,
-        "x-examples": {
-          "example-1": {
-            "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-            "firstName": "string",
-            "lastName": "string",
-            "birthdate": "string",
-            "height": "string",
-            "weight": "string",
-            "gender": "string",
-            "profilePicture": "string",
-            "photos": [
-              "string"
-            ],
-            "location": "string"
-          }
-        },
+        "x-examples": {},
         "properties": {
           "id": {
             "type": "string",
@@ -311,19 +296,31 @@
             "type": "string"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "Represents first name of specific user."
           },
           "lastName": {
             "type": "string"
           },
-          "birthdate": {
+          "password": {
             "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "birthdate": {
+            "type": "string",
+            "format": "date"
           },
           "height": {
-            "type": "string"
+            "type": "integer"
           },
           "weight": {
-            "type": "string"
+            "type": "integer"
           },
           "gender": {
             "type": "string"
@@ -334,7 +331,8 @@
           "photos": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "format": "uri"
             }
           },
           "location": {
@@ -364,12 +362,38 @@
       "Message": {
         "title": "Message",
         "type": "object",
+        "description": "TODO: Message model should represent single message in our communicator, there users should be able to send single text messages, multiple media formats and reply to previous messages.",
         "properties": {
           "id": {
             "type": "string"
+          },
+          "from": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "isReply": {
+                "type": "boolean"
+              },
+              "repliesTo": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
           }
-        },
-        "description": ""
+        }
       },
       "Post": {
         "title": "Post",
@@ -377,6 +401,9 @@
         "description": "",
         "properties": {
           "id": {
+            "type": "string"
+          },
+          "content": {
             "type": "string"
           },
           "createdBy": {
