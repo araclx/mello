@@ -24,212 +24,7 @@
     }
   ],
   "paths": {
-    "/users/{userId}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "userId",
-          "in": "path",
-          "required": true,
-          "description": "Id of an existing user."
-        }
-      ],
-      "get": {
-        "summary": "Get User Info by User ID",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "User Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "Get User Alice Smith": {
-                    "value": {
-                      "id": 142,
-                      "firstName": "Alice",
-                      "lastName": "Smith",
-                      "email": "alice.smith@gmail.com",
-                      "dateOfBirth": "1997-10-31",
-                      "emailVerified": true,
-                      "signUpDate": "2019-08-24"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User Not Found"
-          }
-        },
-        "operationId": "get-users-userId",
-        "description": "Retrieve the information of the user with the matching user ID."
-      },
-      "patch": {
-        "summary": "Update User Information",
-        "operationId": "patch-users-userId",
-        "responses": {
-          "200": {
-            "description": "User Updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "Updated User Rebecca Baker": {
-                    "value": {
-                      "id": 13,
-                      "firstName": "Rebecca",
-                      "lastName": "Baker",
-                      "email": "rebecca@gmail.com",
-                      "dateOfBirth": "1985-10-02",
-                      "emailVerified": false,
-                      "createDate": "2019-08-24"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User Not Found"
-          },
-          "409": {
-            "description": "Email Already Taken"
-          }
-        },
-        "description": "Update the information of an existing user.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "If a new email is given, the user's email verified property will be set to false."
-                  },
-                  "dateOfBirth": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "Update First Name": {
-                  "value": {
-                    "firstName": "Rebecca"
-                  }
-                },
-                "Update Email": {
-                  "value": {
-                    "email": "rebecca@gmail.com"
-                  }
-                },
-                "Update Last Name & Date of Birth": {
-                  "value": {
-                    "lastName": "Baker",
-                    "dateOfBirth": "1985-10-02"
-                  }
-                }
-              }
-            }
-          },
-          "description": "Patch user properties to update."
-        }
-      }
-    },
-    "/user": {
-      "post": {
-        "summary": "Create New User",
-        "operationId": "post-user",
-        "responses": {
-          "200": {
-            "description": "User Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "New User Bob Fellow": {
-                    "value": {
-                      "id": 12,
-                      "firstName": "Bob",
-                      "lastName": "Fellow",
-                      "email": "bob.fellow@gmail.com",
-                      "dateOfBirth": "1996-08-24",
-                      "emailVerified": false,
-                      "createDate": "2020-11-18"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Missing Required Information"
-          },
-          "409": {
-            "description": "Email Already Taken"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                },
-                "required": [
-                  "firstName",
-                  "lastName",
-                  "email",
-                  "dateOfBirth"
-                ]
-              },
-              "examples": {
-                "Create User Bob Fellow": {
-                  "value": {
-                    "firstName": "Bob",
-                    "lastName": "Fellow",
-                    "email": "bob.fellow@gmail.com",
-                    "dateOfBirth": "1996-08-24"
-                  }
-                }
-              }
-            }
-          },
-          "description": "Post the necessary fields for the API to create a new user."
-        },
-        "description": "Create a new user."
-      }
-    },
-    "/hey": {
+    "/v1/hey": {
       "get": {
         "summary": "Hello World",
         "tags": [],
@@ -271,6 +66,220 @@
             }
           }
         }
+      },
+      "parameters": []
+    },
+    "/v1/users": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "_id",
+                          "username",
+                          "email",
+                          "password",
+                          "__v"
+                        ],
+                        "properties": {
+                          "_id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "username": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "email": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "password": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "__v": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "_id": "6187dbb492648f6744cfe638",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "insecurepassword",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6187dbd20f61192f293870d2",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "insecurepassword",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6187dbfd5a405d0e2a506577",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "insecurepassword",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6187dc10abfeaf4b585015e7",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "insecurepassword",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6187e33516860c73c21bf7b4",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "insecurepassword",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6187e3b3d3472edc7bcbdfec",
+                          "username": "keinsell",
+                          "email": "jakub.jay.olan@gmail.com",
+                          "password": "$argon2i$v=19$m=4096,t=3,p=1$Kkjh+9q2gzVrT8+7RvWcFA$MLYNGAwHyvON6GQ3VLvWbYvq4CuIm+CAWZnVIMlYoeg",
+                          "__v": 0
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-v1-users",
+        "description": ""
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-v1-users",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "email": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "password": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "__v": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "username",
+                        "email",
+                        "password",
+                        "_id",
+                        "__v"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "username": "string",
+                        "email": "user@example.com",
+                        "password": "$argon2i$v=19$m=4096,t=3,p=1$cxFf8f5AKGnq8Pgv0KYTbw$/KSw6UoMh6lpOIvA0J/QLb1RRKfDpOu303K6iuMS4e8",
+                        "_id": "619338ca16d79df8e0541f0a",
+                        "__v": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "maxLength": 32
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "email",
+                  "password"
+                ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "username": "string",
+                    "email": "user@example.com",
+                    "password": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -279,7 +288,7 @@
       "User": {
         "title": "User",
         "type": "object",
-        "description": "Model of User at our platform.",
+        "description": "In our application we're looking to providing best suggestions around the world about finding people. In this case we're supposed to collect as much data as it's possible and securely store it (optionally there we can introduce encryption, or give the data just to users and remove them from database).",
         "x-internal": false,
         "x-examples": {},
         "properties": {
@@ -299,7 +308,11 @@
             "type": "string"
           },
           "username": {
-            "type": "string"
+            "type": "string",
+            "example": "keinsell",
+            "minLength": 6,
+            "maxLength": 32,
+            "description": "Username is a core recognition thing in our application."
           },
           "email": {
             "type": "string",
@@ -335,9 +348,15 @@
             }
           },
           "location": {
-            "type": "string"
+            "type": "string",
+            "description": "Location field should be automatically refreshed by client of application. This field should represent location of specific user that was used in last time where he logged into application."
           }
-        }
+        },
+        "required": [
+          "password",
+          "username",
+          "email"
+        ]
       },
       "Hobby": {
         "title": "Hobby",
