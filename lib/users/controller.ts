@@ -14,6 +14,8 @@ export class UserController {
 			username: joi.string().required().max(32),
 			email: joi.string().email().required(),
 			password: joi.string().required(),
+			firstName: joi.string(),
+			lastName: joi.string(),
 		})
 
 		const { error, value } = schema.validate(req.body)

@@ -81,46 +81,6 @@
                 "schema": {
                   "description": "",
                   "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "uniqueItems": true,
-                      "minItems": 1,
-                      "items": {
-                        "required": [
-                          "_id",
-                          "username",
-                          "email",
-                          "password",
-                          "__v"
-                        ],
-                        "properties": {
-                          "_id": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "username": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "email": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "password": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "__v": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
                   "x-examples": {
                     "example-1": {
                       "data": [
@@ -168,8 +128,20 @@
                         }
                       ]
                     }
-                  }
-                }
+                  },
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                },
+                "examples": {}
               }
             }
           }
@@ -248,37 +220,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "username": {
-                    "type": "string",
-                    "maxLength": 32
-                  },
-                  "email": {
-                    "type": "string",
-                    "format": "email"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ]
+                "$ref": "#/components/schemas/User"
               },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "username": "string",
-                    "email": "user@example.com",
-                    "password": "string"
-                  }
-                }
-              }
+              "examples": {}
             }
-          }
+          },
+          "description": ""
         }
       }
     }
@@ -292,11 +239,6 @@
         "x-internal": false,
         "x-examples": {},
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "readOnly": true
-          },
           "firstName": {
             "type": "string",
             "description": "Represents first name of specific user."

@@ -51,6 +51,8 @@ const baseConfig = {
 		express: 'commonjs express',
 		consola: 'commonjs consola',
 		keyv: 'commonjs keyv',
+		argon2: 'commonjs argon2',
+		mongodb: 'commonjs mongodb',
 	},
 }
 const productionConfig = {
