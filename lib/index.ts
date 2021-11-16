@@ -2,6 +2,7 @@ import server from './interfaces/http'
 import getPort from 'get-port'
 import consola from 'consola'
 import { MELLO_PORT, HOST } from 'utils/env'
+import { mongooseService } from 'interfaces/services/mongoose'
 
 export async function createHttpServer() {
 	let PORT = await getPort({
@@ -10,6 +11,8 @@ export async function createHttpServer() {
 	server.listen(PORT, () => {
 		consola.success(`Server is alive on http://${HOST}:${PORT}`)
 	})
+
+	mongooseService()
 }
 
 createHttpServer()

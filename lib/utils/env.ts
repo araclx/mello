@@ -7,6 +7,8 @@ export const NODE_ENV = process.env.NODE_ENV || 'development'
 export const HOST = process.env.HOST! || 'localhost'
 export const MELLO_PORT = Number(process.env.MELLO_PORT!) || 1337
 
+export const MONGODB_URI = process.env.MONGODB_URI! || 'mongodb://localhost:27017/mello'
+
 // Authentication-related Configuration
 /* To generate secure secret for auth, use command: openssl rand -hex 32 */
 if (process.env.MELLO_AUTH_CLIENTID! || process.env.MELLO_AUTH_ISSUER!) {
