@@ -1,1 +1,7 @@
-{}
+{
+	"all": true,
+	"exclude": ["dist"],
+	"check-coverage": false,
+	"reporter": ["html", "json-summary", "json", "lcov", "text-summary"],
+	"report-dir": "./coverage"
+}
