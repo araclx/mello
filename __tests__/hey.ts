@@ -19,12 +19,12 @@ interface HeyData {
 	message: string
 }
 
-test.serial('GET /v1/hey', async (t) => {
+test.serial('get default hello', async (t) => {
 	const data: HeyData = await got('v1/hey', { prefixUrl: t.context.url }).json()
 	t.is(data.message, 'hey')
 })
 
-test.serial('POST /v1/hey', async (t) => {
+test.serial('request specified hello', async (t) => {
 	const testParameter = 'Jay'
 
 	const request: any = await got
