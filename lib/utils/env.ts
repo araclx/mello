@@ -15,6 +15,11 @@ if (process.env.MELLO_AUTH_CLIENTID! || process.env.MELLO_AUTH_ISSUER!) {
 	consola.error('MELLO_AUTH_CLIENTID and MELLO_AUTH_ISSUER must be set in .env file')
 }
 
-export const MELLO_AUTH_SECRET = process.env.MELLO_AUTH_SECRET! || 'devisnotsecure'
-export const MELLO_AUTH_CLIENTID = process.env.MELLO_AUTH_CLIENTID!
-export const MELLO_AUTH_ISSUER = process.env.MELLO_AUTH_ISSUER!
+export const AUTH_SECRET = process.env.MELLO_AUTH_SECRET! || 'devisnotsecure'
+export const AUTH_CLIENTID = process.env.MELLO_AUTH_CLIENTID!
+export const AUTH_ISSUER = process.env.MELLO_AUTH_ISSUER!
+
+// Minio Configuration
+export const MINIO_HOST = process.env.MELLO_MINIO_HOST! || 'localhost'
+export const MINIO_ACCESSKEY = process.env.MELLO_MINIO_ACCESSKEY! || 'mello'
+export const MINIO_SECRETKEY = process.env.MELLO_MINIO_SECRETKEY! || '12345678'
