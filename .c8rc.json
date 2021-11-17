@@ -1,6 +1,6 @@
 {
 	"all": true,
-	"exclude": ["dist"],
+	"exclude": ["dist", "ava.config.js", "commitlint.config.js", "webpack.config.js", "xo-config.js"],
 	"check-coverage": false,
 	"reporter": ["html", "json-summary", "json", "lcov", "text-summary"],
 	"report-dir": "./coverage"
