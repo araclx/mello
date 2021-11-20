@@ -3,6 +3,8 @@ import multer from 'multer'
 import { minioConfig } from 'interfaces/services/minio'
 import * as Minio from 'minio'
 import joi from 'joi'
+import crypto from 'crypto'
+import { HOST, MELLO_PORT } from 'utils/env'
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
@@ -27,14 +29,23 @@ export async function requestHello(req: Request, res: Response): Promise<void> {
 }
 
 export async function uploadFile(req: Request, res: Response): Promise<void> {
+	if (req.file?.originalname) {
+		req.file.originalname =
+			crypto
+				.createHash('sha1')
+				.update(req.file.originalname + Date.now())
+				.digest('hex') +
+			'.' +
+			req.file.mimetype.split('/')[1]
+	}
+
 	minio.putObject('mello-photos', req.file?.originalname, req.file?.buffer, function (error, etag) {
 		if (error) {
-			return console.log(error)
+			res.status(400).json({ error: error.message })
+		} else {
+			let imageCDN = `http://${HOST}:${MELLO_PORT}/v1/hey/img/${req.file?.originalname}`
+			res.status(201).json({ url: imageCDN, etag: etag })
 		}
-		console.log(etag)
-		// let imageCDN = `https://${minioConfig.endpoint}/${minioConfig.bucket}/${req.file?.originalname}`
-		let imageCDN = `http://localhost:1337/v1/hey/img/${req.file?.originalname}`
-		res.json({ url: imageCDN, file: req.file })
 	})
 }
 
