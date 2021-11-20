@@ -45,4 +45,7 @@ export class UserController {
 			}
 		})
 	}
+
+	public async updateOne(req: Request, res: Response) {}
+	public async deleteOne(req: Request, res: Response) {}
 }

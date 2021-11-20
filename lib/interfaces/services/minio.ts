@@ -2,13 +2,15 @@ import * as Minio from 'minio'
 import consola from 'consola'
 import { MINIO_ACCESSKEY, MINIO_SECRETKEY, MINIO_HOST } from 'utils/env'
 
-const minio = new Minio.Client({
+export const minioConfig = {
 	endPoint: MINIO_HOST,
 	port: 9000,
 	useSSL: false,
 	accessKey: MINIO_ACCESSKEY,
 	secretKey: MINIO_SECRETKEY,
-})
+}
+
+const minio = new Minio.Client(minioConfig)
 
 const logger = consola.withScope('minio')
 if (process.env.NODE_ENV === 'CI') logger.pause()
