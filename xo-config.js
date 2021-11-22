@@ -4,4 +4,4 @@ module.exports = {
 	semicolon: false,
 	prettier: true,
 	plugins: [],
-};
+}
