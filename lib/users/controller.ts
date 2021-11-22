@@ -26,6 +26,7 @@ export class UserController {
 		})
 
 		const { error, value } = schema.validate(req.body)
+
 		value.password = await hash(value.password)
 
 		if (error) {

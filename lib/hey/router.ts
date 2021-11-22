@@ -10,6 +10,16 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 const minio = new Minio.Client(minioConfig)
 
+const docs = require('../../postman/schemas/schema.json')
+
+export async function returnHomepage(req: Request, res: Response): Promise<void> {
+	res.json({
+		apiVersion: 'dev',
+		vendor: 'com.araclx.mello',
+		docs: docs,
+	})
+}
+
 export async function returnHello(req: Request, res: Response): Promise<void> {
 	res.json({ message: 'hey' })
 }
@@ -59,6 +69,8 @@ export async function downloadFile(req: Request, res: Response): Promise<void> {
 	})
 }
 
+export async function deleteFile(req: Request, res: Response): Promise<void> {}
+
 const helloRouter = express.Router()
 
 helloRouter.get('/', returnHello)
@@ -67,3 +79,9 @@ helloRouter.post('/img', upload.single('file'), uploadFile)
 helloRouter.get('/img/:id', downloadFile)
 
 export default helloRouter
+
+const defaultRouter = express.Router()
+
+defaultRouter.get('/', returnHomepage)
+
+export { defaultRouter }
