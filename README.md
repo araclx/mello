@@ -39,6 +39,7 @@ We documenting whole back-end code and endpoints using an OpenAPI 3.0 specificat
 
 [![codecov](https://codecov.io/gh/araclx/mello/branch/main/graph/badge.svg?token=6zaNoyjwtA)](https://codecov.io/gh/araclx/mello)
 [![CircleCi](https://circleci.com/gh/araclx/mello.svg?style=svg)](https://circleci.com/gh/araclx/mello)
+[![DeepSource](https://deepsource.io/gh/araclx/mello.svg/?label=active+issues&token=8Zb4YRZ3t3SqGvoMS2y4jn0g)](https://deepsource.io/gh/araclx/mello/?ref=repository-badge)
 
 ## Contributing
 
