@@ -1,5 +1,7 @@
 version = 1
 
+test_patterns = ["__tests__/**"]
+
 [[analyzers]]
 name = "test-coverage"
 enabled = true
@@ -17,4 +19,12 @@ enabled = true
 
 [[analyzers]]
 name = "javascript"
+enabled = true
+
+[[transformers]]
+name = "prettier"
+enabled = true
+
+[[transformers]]
+name = "standardjs"
 enabled = true
