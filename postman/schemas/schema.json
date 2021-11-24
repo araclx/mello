@@ -1,419 +1,401 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Bleeding Mello Documentation",
-    "version": "0.0.1-dev",
-    "description": "Documentation of `bleeding` channel of our application's API. Most of enpoints contained in this documentation is just the design and will be introduced in future, that's a reason to do not use anything from this right now.",
-    "contact": {
-      "name": "Jay Whitewood",
-      "email": "keinsell@protonmail.com"
-    },
-    "license": {
-      "name": "GNU-3.0",
-      "url": "https://github.com/araclx/mello/blob/main/LICENSE.md"
-    }
-  },
-  "servers": [
-    {
-      "url": "http://localhost:1337",
-      "description": "local"
-    },
-    {
-      "url": "https://api.m3llo.co/v1/",
-      "description": "live"
-    }
-  ],
-  "paths": {
-    "/v1/hey": {
-      "get": {
-        "summary": "Hello World",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-hey",
-        "description": "Returns an simple hello world."
-      },
-      "post": {
-        "summary": "",
-        "operationId": "post-hey",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": []
-    },
-    "/v1/users": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "",
-                  "type": "object",
-                  "x-examples": {
-                    "example-1": {
-                      "data": [
-                        {
-                          "_id": "6187dbb492648f6744cfe638",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "insecurepassword",
-                          "__v": 0
-                        },
-                        {
-                          "_id": "6187dbd20f61192f293870d2",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "insecurepassword",
-                          "__v": 0
-                        },
-                        {
-                          "_id": "6187dbfd5a405d0e2a506577",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "insecurepassword",
-                          "__v": 0
-                        },
-                        {
-                          "_id": "6187dc10abfeaf4b585015e7",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "insecurepassword",
-                          "__v": 0
-                        },
-                        {
-                          "_id": "6187e33516860c73c21bf7b4",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "insecurepassword",
-                          "__v": 0
-                        },
-                        {
-                          "_id": "6187e3b3d3472edc7bcbdfec",
-                          "username": "keinsell",
-                          "email": "jakub.jay.olan@gmail.com",
-                          "password": "$argon2i$v=19$m=4096,t=3,p=1$Kkjh+9q2gzVrT8+7RvWcFA$MLYNGAwHyvON6GQ3VLvWbYvq4CuIm+CAWZnVIMlYoeg",
-                          "__v": 0
-                        }
-                      ]
-                    }
-                  },
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
-                      }
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ]
-                },
-                "examples": {}
-              }
-            }
-          }
-        },
-        "operationId": "get-v1-users",
-        "description": ""
-      },
-      "post": {
-        "summary": "",
-        "operationId": "post-v1-users",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "",
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "username": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "email": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "password": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "_id": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "__v": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "username",
-                        "email",
-                        "password",
-                        "_id",
-                        "__v"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ],
-                  "x-examples": {
-                    "example-1": {
-                      "data": {
-                        "username": "string",
-                        "email": "user@example.com",
-                        "password": "$argon2i$v=19$m=4096,t=3,p=1$cxFf8f5AKGnq8Pgv0KYTbw$/KSw6UoMh6lpOIvA0J/QLb1RRKfDpOu303K6iuMS4e8",
-                        "_id": "619338ca16d79df8e0541f0a",
-                        "__v": 0
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              },
-              "examples": {}
-            }
-          },
-          "description": ""
-        }
-      }
-    },
-    "/v1/users/{userid}": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-v1-users-:id"
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "userid",
-          "in": "path",
-          "required": true
-        }
-      ]
-    }
-  },
-  "components": {
-    "schemas": {
-      "User": {
-        "title": "User",
-        "type": "object",
-        "description": "In our application we're looking to providing best suggestions around the world about finding people. In this case we're supposed to collect as much data as it's possible and securely store it (optionally there we can introduce encryption, or give the data just to users and remove them from database).",
-        "x-internal": false,
-        "x-examples": {},
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "description": "Represents first name of specific user.",
-            "example": "Jay"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Whitewood"
-          },
-          "password": {
-            "type": "string",
-            "example": "1rsdfs293u89fs,sdl;dg;"
-          },
-          "username": {
-            "type": "string",
-            "example": "keinsell",
-            "minLength": 6,
-            "maxLength": 32,
-            "description": "Unique username used across our platform, there is no possibility to have two users with same username. Additionally users don't have option to change their usernames more than once per month."
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "jay.whitewood@gmail.com"
-          },
-          "birthdate": {
-            "type": "string",
-            "format": "date",
-            "example": "10-12-2000"
-          },
-          "height": {
-            "type": "number",
-            "exclusiveMinimum": false,
-            "minimum": 110,
-            "maximum": 260,
-            "example": 179,
-            "description": "Reprents height of specific user (used for matching people)"
-          },
-          "weight": {
-            "type": "number",
-            "example": 65,
-            "description": "Represents weight of specific user."
-          },
-          "gender": {
-            "enum": [
-              "Male",
-              "Female",
-              "Other"
-            ],
-            "type": "number",
-            "description": "I have no damn idea how to make this crap LGBT friendly, so I'll just fuck the social standards."
-          },
-          "profilePicture": {
-            "type": "string"
-          },
-          "photos": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            }
-          },
-          "location": {
-            "type": "string",
-            "description": "Location field should be automatically refreshed by client of application. This field should represent location of specific user that was used in last time where he logged into application."
-          }
-        },
-        "required": [
-          "password",
-          "username",
-          "email"
-        ]
-      },
-      "Hobby": {
-        "title": "Hobby",
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "related": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Hobby"
-            }
-          }
-        },
-        "description": "Hobbies are points of interest for Users at our platform, Users are able to add hobbies to their profile and with this informations they are able to source new connections around the world."
-      },
-      "Message": {
-        "title": "Message",
-        "type": "object",
-        "description": "TODO: Message model should represent single message in our communicator, there users should be able to send single text messages, multiple media formats and reply to previous messages.",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "from": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "to": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          "content": {
-            "type": "object",
-            "properties": {
-              "isReply": {
-                "type": "boolean"
-              },
-              "repliesTo": {
-                "type": "string",
-                "format": "uuid"
-              },
-              "message": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "Post": {
-        "title": "Post",
-        "type": "object",
-        "description": "",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "createdBy": {
-            "$ref": "#/components/schemas/User"
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "v1/auth": {
-        "type": "http",
-        "scheme": "bearer",
-        "description": ""
-      },
-      "v2/auth": {
-        "type": "openIdConnect",
-        "description": ""
-      }
-    },
-    "requestBodies": {}
-  },
-  "security": []
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Bleeding Mello Documentation",
+		"version": "0.0.1-dev",
+		"description": "Documentation of `bleeding` channel of our application's API. Most of enpoints contained in this documentation is just the design and will be introduced in future, that's a reason to do not use anything from this right now.",
+		"contact": {
+			"name": "Jay Whitewood",
+			"email": "keinsell@protonmail.com"
+		},
+		"license": {
+			"name": "GNU-3.0",
+			"url": "https://github.com/araclx/mello/blob/main/LICENSE.md"
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:1337",
+			"description": "local"
+		},
+		{
+			"url": "https://api.m3llo.co/v1/",
+			"description": "live"
+		}
+	],
+	"paths": {
+		"/v1/hey": {
+			"get": {
+				"summary": "Hello World",
+				"tags": [],
+				"responses": {},
+				"operationId": "get-hey",
+				"description": "Returns an simple hello world."
+			},
+			"post": {
+				"summary": "",
+				"operationId": "post-hey",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"parameters": []
+		},
+		"/v1/users": {
+			"get": {
+				"summary": "Your GET endpoint",
+				"tags": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"description": "",
+									"type": "object",
+									"x-examples": {
+										"example-1": {
+											"data": [
+												{
+													"_id": "6187dbb492648f6744cfe638",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "insecurepassword",
+													"__v": 0
+												},
+												{
+													"_id": "6187dbd20f61192f293870d2",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "insecurepassword",
+													"__v": 0
+												},
+												{
+													"_id": "6187dbfd5a405d0e2a506577",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "insecurepassword",
+													"__v": 0
+												},
+												{
+													"_id": "6187dc10abfeaf4b585015e7",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "insecurepassword",
+													"__v": 0
+												},
+												{
+													"_id": "6187e33516860c73c21bf7b4",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "insecurepassword",
+													"__v": 0
+												},
+												{
+													"_id": "6187e3b3d3472edc7bcbdfec",
+													"username": "keinsell",
+													"email": "jakub.jay.olan@gmail.com",
+													"password": "$argon2i$v=19$m=4096,t=3,p=1$Kkjh+9q2gzVrT8+7RvWcFA$MLYNGAwHyvON6GQ3VLvWbYvq4CuIm+CAWZnVIMlYoeg",
+													"__v": 0
+												}
+											]
+										}
+									},
+									"properties": {
+										"data": {
+											"type": "array",
+											"items": {
+												"$ref": "#/components/schemas/User"
+											}
+										}
+									},
+									"required": ["data"]
+								},
+								"examples": {}
+							}
+						}
+					}
+				},
+				"operationId": "get-v1-users",
+				"description": ""
+			},
+			"post": {
+				"summary": "",
+				"operationId": "post-v1-users",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"description": "",
+									"type": "object",
+									"properties": {
+										"data": {
+											"type": "object",
+											"properties": {
+												"username": {
+													"type": "string",
+													"minLength": 1
+												},
+												"email": {
+													"type": "string",
+													"minLength": 1
+												},
+												"password": {
+													"type": "string",
+													"minLength": 1
+												},
+												"_id": {
+													"type": "string",
+													"minLength": 1
+												},
+												"__v": {
+													"type": "number"
+												}
+											},
+											"required": ["username", "email", "password", "_id", "__v"]
+										}
+									},
+									"required": ["data"],
+									"x-examples": {
+										"example-1": {
+											"data": {
+												"username": "string",
+												"email": "user@example.com",
+												"password": "$argon2i$v=19$m=4096,t=3,p=1$cxFf8f5AKGnq8Pgv0KYTbw$/KSw6UoMh6lpOIvA0J/QLb1RRKfDpOu303K6iuMS4e8",
+												"_id": "619338ca16d79df8e0541f0a",
+												"__v": 0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/User"
+							},
+							"examples": {}
+						}
+					},
+					"description": ""
+				}
+			}
+		},
+		"/v1/users/{userid}": {
+			"get": {
+				"summary": "Your GET endpoint",
+				"tags": [],
+				"responses": {},
+				"operationId": "get-v1-users-:id"
+			},
+			"parameters": [
+				{
+					"schema": {
+						"type": "string"
+					},
+					"name": "userid",
+					"in": "path",
+					"required": true
+				}
+			]
+		}
+	},
+	"components": {
+		"schemas": {
+			"User": {
+				"title": "User",
+				"type": "object",
+				"description": "In our application we're looking to providing best suggestions around the world about finding people. In this case we're supposed to collect as much data as it's possible and securely store it (optionally there we can introduce encryption, or give the data just to users and remove them from database).",
+				"x-internal": false,
+				"x-examples": {},
+				"properties": {
+					"firstName": {
+						"type": "string",
+						"description": "Represents first name of specific user.",
+						"example": "Jay"
+					},
+					"lastName": {
+						"type": "string",
+						"example": "Whitewood"
+					},
+					"password": {
+						"type": "string",
+						"example": "1rsdfs293u89fs,sdl;dg;"
+					},
+					"username": {
+						"type": "string",
+						"example": "keinsell",
+						"minLength": 6,
+						"maxLength": 32,
+						"description": "Unique username used across our platform, there is no possibility to have two users with same username. Additionally users don't have option to change their usernames more than once per month."
+					},
+					"email": {
+						"type": "string",
+						"format": "email",
+						"example": "jay.whitewood@gmail.com"
+					},
+					"birthdate": {
+						"type": "string",
+						"format": "date",
+						"example": "10-12-2000"
+					},
+					"height": {
+						"type": "number",
+						"exclusiveMinimum": false,
+						"minimum": 110,
+						"maximum": 260,
+						"example": 179,
+						"description": "Reprents height of specific user (used for matching people)"
+					},
+					"weight": {
+						"type": "number",
+						"example": 65,
+						"description": "Represents weight of specific user."
+					},
+					"gender": {
+						"enum": ["Male", "Female", "Other"],
+						"type": "number",
+						"description": "I have no damn idea how to make this crap LGBT friendly, so I'll just fuck the social standards."
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"photos": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uri"
+						}
+					},
+					"location": {
+						"type": "string",
+						"description": "Location field should be automatically refreshed by client of application. This field should represent location of specific user that was used in last time where he logged into application."
+					}
+				},
+				"required": ["password", "username", "email"]
+			},
+			"Hobby": {
+				"title": "Hobby",
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"related": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/Hobby"
+						}
+					}
+				},
+				"description": "Hobbies are points of interest for Users at our platform, Users are able to add hobbies to their profile and with this informations they are able to source new connections around the world."
+			},
+			"Message": {
+				"title": "Message",
+				"type": "object",
+				"description": "TODO: Message model should represent single message in our communicator, there users should be able to send single text messages, multiple media formats and reply to previous messages.",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"from": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"to": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"content": {
+						"type": "object",
+						"properties": {
+							"isReply": {
+								"type": "boolean"
+							},
+							"repliesTo": {
+								"type": "string",
+								"format": "uuid"
+							},
+							"message": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"Post": {
+				"title": "Post",
+				"type": "object",
+				"description": "",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					},
+					"createdBy": {
+						"$ref": "#/components/schemas/User"
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"v1/auth": {
+				"type": "http",
+				"scheme": "bearer",
+				"description": ""
+			},
+			"v2/auth": {
+				"type": "openIdConnect",
+				"description": ""
+			}
+		},
+		"requestBodies": {}
+	},
+	"security": []
 }

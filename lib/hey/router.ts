@@ -42,7 +42,7 @@ export async function uploadFile(req: Request, res: Response): Promise<void> {
 	if (req.file?.originalname) {
 		req.file.originalname =
 			crypto
-				.createHash("sha256")
+				.createHash('sha256')
 				.update(req.file.originalname + Date.now())
 				.digest('hex') +
 			'.' +
