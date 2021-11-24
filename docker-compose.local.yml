@@ -4,12 +4,27 @@ services:
    mongodb:
       container_name: mello-mongodb
       image: mongo:latest
+      deploy:
+         resources:
+            limits:
+               cpus: 0.25
+               memory: 128M
+            reservations:
+               memory: 64M
       ports:
          - '27017:27017'
+
    minio:
       container_name: mello-minio
       image: minio/minio:edge
       command: server /data --console-address ":9001"
+      deploy:
+         resources:
+            limits:
+               cpus: 0.25
+               memory: 128M
+            reservations:
+               memory: 64M
       ports:
          - '9000:9000'
          - '9001:9001'
@@ -20,6 +35,13 @@ services:
    influxdb:
       container_name: mello-influxdb
       image: influxdb:latest
+      deploy:
+         resources:
+            limits:
+               cpus: 0.05
+               memory: 64M
+            reservations:
+               memory: 32M
       ports:
          - '8086:8086'
       environment:
@@ -32,5 +54,12 @@ services:
       container_name: mello-chronograf
       image: chronograf:latest
       command: chronograf --influxdb-url=http://influxdb:8086
+      deploy:
+         resources:
+            limits:
+               cpus: 0.05
+               memory: 64M
+            reservations:
+               memory: 32M
       ports:
          - '8888:8888'
