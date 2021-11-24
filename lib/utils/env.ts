@@ -6,6 +6,7 @@ config()
 
 export const NODE_ENV = process.env.NODE_ENV || 'development'
 export const HOST = process.env.HOST! || 'localhost'
+export const PROTOCOL = process.env.PROTOCOL! || 'http'
 export const MELLO_PORT = Number(process.env.MELLO_PORT!) || 1337
 
 export const MONGODB_URI = process.env.MONGODB_URI! || 'mongodb://localhost:27017/mello'
@@ -21,7 +22,7 @@ export const AUTH0_CONFIG = {
 	authRequired: false,
 	auth0Logout: true,
 	secret: AUTH_SECRET,
-	baseURL: 'http://localhost:1337',
+	baseURL: `${PROTOCOL}://${HOST}:${MELLO_PORT}`,
 	clientID: AUTH_CLIENTID,
 	issuerBaseURL: AUTH_ISSUER,
 }
@@ -35,5 +36,5 @@ export const MINIO_SECRETKEY = process.env.MELLO_MINIO_SECRETKEY! || '12345678'
 export const AUTH_TOKEN = process.env.MELLO_AUTH_TOKEN! || crypto.randomBytes(64).toString('hex')
 
 if (!AUTH_SECRET || !AUTH_CLIENTID || !AUTH_ISSUER) {
-	consola.error('MELLO_AUTH_CLIENTID and MELLO_AUTH_ISSUER must be set in .env file')
+	consola.warn('Auth0 Configuration is missing on your environment variables')
 }
