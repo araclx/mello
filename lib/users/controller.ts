@@ -9,6 +9,12 @@ export class UserController {
 		res.json(users)
 	}
 
+	public async getOne(req: Request, res: Response) {
+		const requestedUsername = req.params.username
+		const dat = await User.findOne({ username: requestedUsername })
+		res.json(dat)
+	}
+
 	public async createNew(req: Request, res: Response) {
 		const schema = joi.object().keys({
 			username: joi.string().required().max(32).min(6),
@@ -23,11 +29,13 @@ export class UserController {
 			profilePicture: joi.string(),
 			photos: joi.array(),
 			location: joi.string(),
+			salt: joi.string(),
 		})
 
 		const { error, value } = schema.validate(req.body)
-
-		value.password = await hash(value.password)
+		let encryption = await hash(value.password)
+		value.password = encryption.hash
+		value.salt = encryption.salt
 
 		if (error) {
 			res.status(400).json({ error: error.message })

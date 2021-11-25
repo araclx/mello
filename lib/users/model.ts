@@ -6,6 +6,7 @@ const schema = new Schema({
 	email: { type: String, unique: true, required: true },
 	username: { type: String, unique: true, required: true, min: 6, max: 32 },
 	password: String,
+	salt: String,
 	birthdate: Date,
 	height: Number,
 	weight: Number,
