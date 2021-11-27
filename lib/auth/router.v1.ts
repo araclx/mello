@@ -1,5 +1,7 @@
 import express from 'express'
 import passport from 'passport'
+import jwt from 'jsonwebtoken'
+import { jwtConfig } from '../utils/config'
 
 const router = express.Router()
 
@@ -14,11 +16,13 @@ router.post('/login', (req, res, next) => {
 		if (!user) {
 			return res.status(400).json({ errors: 'No user found' })
 		}
+
+		const token = jwt.sign({ id: user.id }, jwtConfig.secretOrKey)
 		req.logIn(user, function (err) {
 			if (err) {
 				return res.status(400).json({ errors: err })
 			}
-			return res.status(200).json({ success: `Hello! ${user.username}` })
+			return res.status(200).json({ success: `Hello! ${user.username}`, token: token })
 		})
 	})(req, res, next)
 })
