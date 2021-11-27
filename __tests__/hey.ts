@@ -2,7 +2,7 @@ import anyTest, { TestFn as TestInterface } from 'ava'
 import got from 'got'
 import http from 'http'
 import listen from 'test-listen'
-import app from '../lib/interfaces/http'
+import app from 'interfaces/http'
 
 const test = anyTest as TestInterface<{ server: http.Server; url: string }>
 
