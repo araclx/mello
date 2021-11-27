@@ -12,7 +12,7 @@ export async function hash(text: string) {
 	}
 }
 
-export async function verify(text: string, hash: string, salt: string) {
+export async function verify(text: string, hash: string, salt?: string) {
 	// let verifyHash = crypto.pbkdf2Sync(hash, salt, 10000, 64, 'sha512').toString('hex')
 	const verification = await argon2.verify(hash, text)
 	return verification
