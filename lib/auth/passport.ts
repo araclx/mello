@@ -1,11 +1,28 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
-import { Strategy as JsonWebTokenStrategy, extract } from 'passport-jwt'
+import { Strategy as JwtStrategy, extract } from 'passport-jwt'
 import { User } from 'users/model'
 import { verify } from 'utils/crypto'
 import { AUTH_TOKEN } from '../utils/env'
+import { jwtConfig } from '../utils/config'
 
 /* Fucking Passport-thing selection */
+
+let localstrategy = new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
+	User.findOne({ username: username })
+		.then(function (user) {
+			if (!user) {
+				return done(null, false, { message: 'No such user' })
+			}
+			if (!verify(password, user.password)) {
+				return done(null, false, { message: 'Wrong password' })
+			}
+			return done(null, user)
+		})
+		.catch(function (err) {
+			return done(null, false, { message: err })
+		})
+})
 
 passport.serializeUser((user: any, done) => {
 	// ? ID or _ID
@@ -18,23 +35,8 @@ passport.deserializeUser((id, done) => {
 	})
 })
 
-passport.use(
-	new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
-		User.findOne({ username: username })
-			.then(function (user) {
-				if (!user) {
-					return done(null, false, { message: 'No such user' })
-				}
-				if (!verify(password, user.password)) {
-					return done(null, false, { message: 'Wrong password' })
-				}
-				return done(null, user)
-			})
-			.catch(function (err) {
-				return done(null, false, { message: err })
-			})
-	})
-)
+passport.use(localstrategy)
+// passport.use(jwtstrategy)
 
 export default passport
 
