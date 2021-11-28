@@ -53,6 +53,7 @@ const baseConfig = {
 		keyv: 'commonjs keyv',
 		argon2: 'commonjs argon2',
 		mongodb: 'commonjs mongodb',
+		upash: 'commonjs upash',
 	},
 }
 const productionConfig = {
