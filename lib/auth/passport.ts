@@ -7,20 +7,15 @@ import { jwtConfig } from '../utils/config'
 
 /* Fucking Passport-thing selection */
 
-let localstrategy = new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
-	User.findOne({ username: username })
-		.then(function (user) {
-			if (!user) {
-				return done(null, false, { message: 'No such user' })
-			}
-			if (!verify(password, user.password)) {
-				done(null, false, { message: 'Wrong password' })
-			}
-			return done(null, user)
-		})
-		.catch(function (err) {
-			return done(null, false, { message: err })
-		})
+let localstrategy = new LocalStrategy({ usernameField: 'username' }, async function (username, password, done) {
+	const aggregateUser = await User.findOne({ username: username })
+	if (!aggregateUser) {
+		return done(null, false)
+	}
+	if (!(await verify(password, aggregateUser.password))) {
+		return done(null, false)
+	}
+	return done(null, aggregateUser)
 })
 
 let jwtstrategy = new JwtStrategy(jwtConfig, function (payload, done) {
@@ -37,7 +32,6 @@ let jwtstrategy = new JwtStrategy(jwtConfig, function (payload, done) {
 })
 
 passport.serializeUser((user: any, done) => {
-	// ? ID or _ID
 	done(null, user.id)
 })
 

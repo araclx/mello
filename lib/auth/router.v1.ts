@@ -14,7 +14,7 @@ router.post('/login', (req, res, next) => {
 			return res.status(400).json({ errors: err })
 		}
 		if (!user) {
-			return res.status(400).json({ errors: 'No user found' })
+			return res.status(400).json({ message: 'User with specified data do not exist (wrong password, login or no account)' })
 		}
 
 		const token = jwt.sign({ id: user.id }, jwtConfig.secretOrKey)
@@ -22,7 +22,7 @@ router.post('/login', (req, res, next) => {
 			if (err) {
 				return res.status(400).json({ errors: err })
 			}
-			return res.status(200).json({ success: `Hello! ${user.username}`, token: token })
+			return res.status(200).json({ success: `Hello! ${user.username}`, token: token, data: user })
 		})
 	})(req, res, next)
 })
