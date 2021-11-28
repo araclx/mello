@@ -60,7 +60,8 @@
 	},
 	"peerDependencies": {},
 	"dependencies": {
-		"argon2": "^0.28.2",
+		"@phc/argon2": "^1.0.9",
+		"argon2": "^0.28.3",
 		"compression": "^1.7.4",
 		"connect-mongo": "^4.6.0",
 		"consola": "^2.15.3",
@@ -82,6 +83,7 @@
 		"passport": "^0.5.0",
 		"passport-jwt": "^4.0.0",
 		"passport-local": "^1.0.0",
-		"session": "^0.1.0"
+		"session": "^0.1.0",
+		"upash": "^1.0.2"
 	}
 }

@@ -1,19 +1,16 @@
-import argon2 from 'argon2'
+import argon2 from '@phc/argon2'
+import upash from 'upash'
 import crypto from 'crypto'
 
-export async function hash(text: string) {
-	let salt = crypto.randomBytes(32).toString('hex')
-	var generatedHash = crypto.pbkdf2Sync(text, salt, 10000, 64, 'sha512').toString('hex')
-	generatedHash = await argon2.hash(text)
+upash.install('argon2', argon2)
 
-	return {
-		hash: generatedHash,
-		salt: salt,
-	}
+export async function hash(text: string) {
+	// NOTE: We can think about implentation of additional security configuration for argon2. Also we can pop up a SHA-512 and then hash it with argon2 to have better encryption without performance issues.
+	const hashstr = await upash.hash(text)
+	return hashstr
 }
 
-export async function verify(text: string, hash: string, salt?: string) {
-	// let verifyHash = crypto.pbkdf2Sync(hash, salt, 10000, 64, 'sha512').toString('hex')
-	const verification = await argon2.verify(hash, text)
-	return verification
+export async function verify(text: string, hash: string) {
+	const match_argon2 = await upash.verify(hash, text)
+	return match_argon2
 }

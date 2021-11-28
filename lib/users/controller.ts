@@ -33,9 +33,7 @@ export class UserController {
 		})
 
 		const { error, value } = schema.validate(req.body)
-		let encryption = await hash(value.password)
-		value.password = encryption.hash
-		value.salt = encryption.salt
+		value.password = await hash(value.password)
 
 		if (error) {
 			res.status(400).json({ error: error.message })
