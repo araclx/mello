@@ -49,14 +49,16 @@ export async function uploadFile(req: Request, res: Response): Promise<void> {
 			req.file.mimetype.split('/')[1]
 	}
 
-	minio.putObject('mello-photos', req.file?.originalname, req.file?.buffer, function (error, etag) {
-		if (error) {
-			res.status(400).json({ error: error.message })
-		} else {
-			let imageCDN = `http://${HOST}:${MELLO_PORT}/v1/hey/img/${req.file?.originalname}`
-			res.status(201).json({ url: imageCDN, etag: etag })
-		}
-	})
+	if (req.file) {
+		minio.putObject('mello-photos', req.file?.originalname, req.file?.buffer, function (error, etag) {
+			if (error) {
+				res.status(400).json({ error: error.message })
+			} else {
+				let imageCDN = `http://${HOST}:${MELLO_PORT}/v1/hey/img/${req.file?.originalname}`
+				res.status(201).json({ url: imageCDN, etag: etag })
+			}
+		})
+	}
 }
 
 export async function downloadFile(req: Request, res: Response): Promise<void> {

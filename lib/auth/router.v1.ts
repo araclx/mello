@@ -9,21 +9,24 @@ const router = express.Router()
 
 // This is fucked up I think, even if I don't see an error there this route allows me to login under specific username with literally any password. I don't know what's wrong with it.
 router.post('/login', (req, res, next) => {
-	passport.authenticate('local', function (err, user, info) {
+	passport.authenticate('local', function (err, user) {
 		if (err) {
 			return res.status(400).json({ errors: err })
 		}
+
 		if (!user) {
 			return res.status(400).json({ message: 'User with specified data do not exist (wrong password, login or no account)' })
 		}
 
-		const token = jwt.sign({ id: user.id }, jwtConfig.secretOrKey)
 		req.logIn(user, function (err) {
+			const token = jwt.sign({ id: user.id }, jwtConfig.secretOrKey)
 			if (err) {
 				return res.status(400).json({ errors: err })
 			}
 			return res.status(200).json({ success: `Hello! ${user.username}`, token: token, data: user })
 		})
+
+		return 0
 	})(req, res, next)
 })
 
