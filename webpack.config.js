@@ -37,6 +37,10 @@ const baseConfig = {
 				exclude: /node_modules/,
 			},
 			*/
+			{
+				test: /\.node$/,
+				loader: 'node-loader',
+			},
 		],
 	},
 	resolve: {
@@ -48,12 +52,12 @@ const baseConfig = {
 		path: path.resolve(__dirname, 'dist'),
 	},
 	externals: {
-		express: 'commonjs express',
-		consola: 'commonjs consola',
-		keyv: 'commonjs keyv',
-		argon2: 'commonjs argon2',
-		mongodb: 'commonjs mongodb',
-		upash: 'commonjs upash',
+		'express': 'commonjs express',
+		'consola': 'commonjs consola',
+		'keyv': 'commonjs keyv',
+		'mongodb': 'commonjs mongodb',
+		'upash': 'commonjs upash',
+		'@phc/argon2': 'commonjs @phc/argon2',
 	},
 }
 const productionConfig = {

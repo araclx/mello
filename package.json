@@ -42,6 +42,7 @@
 		"friendly-errors-webpack-plugin": "^1.7.0",
 		"husky": "^7.0.4",
 		"mongodb-memory-server": "^8.0.2",
+		"node-loader": "^2.0.0",
 		"nodemon-webpack-plugin": "^4.5.2",
 		"pm2": "^5.1.2",
 		"prettier": "^2.4.1",
