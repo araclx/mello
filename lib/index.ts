@@ -1,9 +1,9 @@
-import server from './interfaces/http'
+import server from './_core/interfaces/http'
 import getPort from 'get-port'
 import consola from 'consola'
-import { MELLO_PORT, HOST } from 'utils/env'
-import { mongooseService } from 'interfaces/services/mongoose'
-import { minioService } from 'interfaces/services/minio'
+import { MELLO_PORT, HOST } from '_utils/env'
+import { mongooseService } from '_core/services/mongoose'
+import { minioService } from '_core/services/minio'
 
 export async function createHttpServer() {
 	let PORT = await getPort({

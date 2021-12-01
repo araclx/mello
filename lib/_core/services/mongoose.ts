@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import consola from 'consola'
-import { MONGODB_URI, NODE_ENV } from 'utils/env'
+import { MONGODB_URI, NODE_ENV } from '_utils/env'
 
 const logger = consola.withScope('mongoose')
 if (NODE_ENV === 'CI') logger.pause()

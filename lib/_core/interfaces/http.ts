@@ -4,8 +4,8 @@ import cors from 'cors'
 import session from 'express-session'
 
 import heyRouter, { defaultRouter } from 'hey/router'
-import userRouter from 'users/router'
-import v1AuthRouter from 'auth/router.v1'
+import { UserService } from 'users/service'
+import { AuthService } from '_core/security/service'
 
 /* In case of Auth0 usage we're supposed to use these imports.
 
@@ -19,8 +19,8 @@ app.use('/v2/auth', v2AuthRouter)
 
 */
 
-import { sessionConfig } from 'utils/config'
-import passport from 'auth/passport'
+import { sessionConfig } from '_utils/config'
+import passport from '_core/security/passport'
 
 const app = express()
 
@@ -37,7 +37,7 @@ app.use(passport.session())
 
 app.use('/', defaultRouter)
 app.use('/v1/hey', heyRouter)
-app.use('/v1/users', userRouter)
-app.use('/v1/auth', v1AuthRouter)
+app.use('/v1/users', new UserService().router)
+app.use('/v1/auth', new AuthService().router)
 
 export default app

@@ -1,6 +1,6 @@
-import { Request, Response } from 'express'
+import { Request, Response, Router } from 'express'
 import { User } from 'users/model'
-import { hash } from 'utils/crypto'
+import { hash } from '_utils/crypto'
 import joi from 'joi'
 
 export class UserController {
@@ -15,7 +15,7 @@ export class UserController {
 		res.json(dat)
 	}
 
-	public async createNew(req: Request, res: Response) {
+	public async createNewUserInDatabase(req: Request, res: Response) {
 		const schema = joi.object().keys({
 			username: joi.string().required().max(32).min(6),
 			email: joi.string().email().required(),
@@ -55,4 +55,17 @@ export class UserController {
 
 	public async updateOne(req: Request, res: Response) {}
 	public async deleteOne(req: Request, res: Response) {}
+}
+
+export class UserService {
+	public router: Router
+	private controller: UserController = new UserController()
+	constructor() {
+		this.router = Router()
+		this.routes()
+	}
+
+	public routes() {
+		this.router.post('/', this.controller.createNewUserInDatabase)
+	}
 }

@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express'
 import multer from 'multer'
-import { minioConfig } from 'interfaces/services/minio'
+import { minioConfig } from '_core/services/minio'
 import * as Minio from 'minio'
 import joi from 'joi'
 import crypto from 'crypto'
-import { HOST, MELLO_PORT } from 'utils/env'
+import { HOST, MELLO_PORT } from '_utils/env'
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })

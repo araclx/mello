@@ -2,8 +2,8 @@ import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy } from 'passport-jwt'
 import { User } from 'users/model'
-import { verify } from 'utils/crypto'
-import { jwtConfig } from '../utils/config'
+import { verify } from '_utils/crypto'
+import { jwtConfig } from '../../_utils/config'
 
 /* Fucking Passport-thing selection */
 

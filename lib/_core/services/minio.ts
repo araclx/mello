@@ -1,6 +1,6 @@
 import * as Minio from 'minio'
 import consola from 'consola'
-import { MINIO_ACCESSKEY, MINIO_SECRETKEY, MINIO_HOST } from 'utils/env'
+import { MINIO_ACCESSKEY, MINIO_SECRETKEY, MINIO_HOST } from '_utils/env'
 
 export const minioConfig = {
 	endPoint: MINIO_HOST,
