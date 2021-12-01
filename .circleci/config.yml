@@ -17,8 +17,9 @@ jobs:
          - node/install-packages
          - run: yarn se-release
    build:
-      executor: node/default
-      tag: 17.0.1
+      executor:
+         name: node/default
+         tag: 17.0.1
       steps:
          - checkout
          - node/install-packages:
