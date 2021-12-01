@@ -10,7 +10,7 @@
 	"scripts": {
 		"start": "node dist/bundle.js",
 		"test": "c8 ava",
-		"build": "pkg build lib/index.ts",
+		"build": "ncc build lib/index.ts -o dist -s --license LICENSE.md -m",
 		"dev": "webpack",
 		"se-release": "semantic-release"
 	},
@@ -36,6 +36,7 @@
 		"@types/semantic-release": "^17.2.2",
 		"@types/test-listen": "^1.1.0",
 		"@types/xo": "^0.39.1",
+		"@vercel/ncc": "^0.32.0",
 		"ava": "^4.0.0-rc.1",
 		"c8": "^7.10.0",
 		"esbuild-loader": "^2.16.0",
