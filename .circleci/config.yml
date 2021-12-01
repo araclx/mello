@@ -16,10 +16,19 @@ jobs:
          - checkout
          - node/install-packages
          - run: yarn se-release
+   build:
+      executor: node/default
+      tag: 17.0.1
+      steps:
+         - checkout
+         - node/install-packages:
+              pkg-manager: yarn
+         - run: yarn build
 
 workflows:
    bleeding:
       jobs:
+         - build
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
