@@ -12,24 +12,24 @@ const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const { merge } = require('webpack-merge')
 
 const baseConfig = {
-	entry: './lib/index.ts',
-	target: 'node',
-	stats: 'none',
-	devServer: {
-		quiet: true,
-	},
-	module: {
-		rules: [
-			{
-				test: /\.tsx?$/,
-				loader: 'esbuild-loader',
-				exclude: /node_modules/,
-				options: {
-					loader: 'ts',
-					target: 'esnext',
-				},
-			},
-			/* An alternative loader for TypeScript,
+  entry: './lib/index.ts',
+  target: 'node',
+  stats: 'none',
+  devServer: {
+    quiet: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'esbuild-loader',
+        exclude: /node_modules/,
+        options: {
+          loader: 'ts',
+          target: 'esnext'
+        }
+      },
+      /* An alternative loader for TypeScript,
 			 * esbuild is faster than ts-loader, so we'll keep it for now.
 			{
 				test: /\.tsx?$/,
@@ -37,62 +37,62 @@ const baseConfig = {
 				exclude: /node_modules/,
 			},
 			*/
-			{
-				test: /\.node$/,
-				loader: 'node-loader',
-			},
-		],
-	},
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
-		plugins: [new tspaths()],
-	},
-	output: {
-		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist'),
-	},
-	externals: {
-		'express': 'commonjs express',
-		'consola': 'commonjs consola',
-		'keyv': 'commonjs keyv',
-		'mongodb': 'commonjs mongodb',
-		'upash': 'commonjs upash',
-		'@phc/argon2': 'commonjs @phc/argon2',
-	},
+      {
+        test: /\.node$/,
+        loader: 'node-loader'
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+    plugins: [new tspaths()]
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  externals: {
+    express: 'commonjs express',
+    consola: 'commonjs consola',
+    keyv: 'commonjs keyv',
+    mongodb: 'commonjs mongodb',
+    upash: 'commonjs upash',
+    '@phc/argon2': 'commonjs @phc/argon2'
+  }
 }
 const productionConfig = {
-	mode: 'production',
-	plugins: [
-		new bar({
-			name: 'mellstruct',
-		}),
-		new errors(),
-	],
-	optimization: {
-		minimizer: [
-			new ESBuildMinifyPlugin({
-				target: 'esnext', // Syntax to compile to (see options below for possible values)
-			}),
-		],
-	},
+  mode: 'production',
+  plugins: [
+    new bar({
+      name: 'mellstruct'
+    }),
+    new errors()
+  ],
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'esnext' // Syntax to compile to (see options below for possible values)
+      })
+    ]
+  }
 }
 
 const developmentConfig = {
-	mode: 'development',
-	watch: true,
-	plugins: [
-		new bar({
-			name: 'mellstruct',
-		}),
-		new errors(),
-		new nodemon({
-			quiet: true,
-		}),
-	],
+  mode: 'development',
+  watch: true,
+  plugins: [
+    new bar({
+      name: 'mellstruct'
+    }),
+    new errors(),
+    new nodemon({
+      quiet: true
+    })
+  ]
 }
 
 if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'CI') {
-	module.exports = merge(baseConfig, productionConfig)
+  module.exports = merge(baseConfig, productionConfig)
 } else {
-	module.exports = merge(baseConfig, developmentConfig)
+  module.exports = merge(baseConfig, developmentConfig)
 }
