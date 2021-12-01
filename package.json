@@ -10,7 +10,8 @@
 	"scripts": {
 		"start": "node dist/bundle.js",
 		"test": "c8 ava",
-		"build": "webpack",
+		"build": "pkg build lib/index.ts",
+		"dev": "webpack",
 		"se-release": "semantic-release"
 	},
 	"devDependencies": {
@@ -44,6 +45,7 @@
 		"mongodb-memory-server": "^8.0.2",
 		"node-loader": "^2.0.0",
 		"nodemon-webpack-plugin": "^4.5.2",
+		"pkg": "^5.5.1",
 		"pm2": "^5.1.2",
 		"prettier": "^2.4.1",
 		"semantic-release": "^18.0.0",
