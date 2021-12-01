@@ -17,10 +17,13 @@ jobs:
          - node/install-packages
          - run: yarn se-release
    build:
-      executor: node/default
-      tag: 17.0.1
+      docker:
+         - image: cimg/base:stable
       steps:
          - checkout
+         - node/install:
+              install-yarn: true
+              node-version: 17.0.1
          - node/install-packages:
               pkg-manager: yarn
          - run: yarn build
