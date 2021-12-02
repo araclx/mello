@@ -7,6 +7,9 @@ import heyRouter, { defaultRouter } from 'hey/router'
 import { UserService } from 'users/service'
 import { AuthService } from '_core/security/service'
 
+import { sessionConfig } from '_utils/config'
+import passport from '_core/security/passport'
+
 /* In case of Auth0 usage we're supposed to use these imports.
 
 import { auth, requiresAuth } from 'express-openid-connect'
@@ -19,25 +22,34 @@ app.use('/v2/auth', v2AuthRouter)
 
 */
 
-import { sessionConfig } from '_utils/config'
-import passport from '_core/security/passport'
+export class HTTPinterface {
+	public app: express.Application
 
-const app = express()
+	constructor() {
+		this.app = express()
+		this.middleware()
+		this.security()
+		this.routes()
+	}
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(compression())
-app.use(cors())
-app.disable('x-powered-by')
+	private middleware() {
+		this.app.use(express.json())
+		this.app.use(express.urlencoded({ extended: false }))
+		this.app.use(compression())
+		this.app.use(cors())
+		this.app.disable('x-powered-by')
+	}
 
-app.use(session(sessionConfig))
+	private security() {
+		this.app.use(session(sessionConfig))
+		this.app.use(passport.initialize())
+		this.app.use(passport.session())
+	}
 
-app.use(passport.initialize())
-app.use(passport.session())
-
-app.use('/', defaultRouter)
-app.use('/v1/hey', heyRouter)
-app.use('/v1/users', new UserService().router)
-app.use('/v1/auth', new AuthService().router)
-
-export default app
+	private routes() {
+		this.app.use('/', defaultRouter)
+		this.app.use('/v1/hey', heyRouter)
+		this.app.use('/v1/users', new UserService().router)
+		this.app.use('/v1/auth', new AuthService().router)
+	}
+}
