@@ -62,7 +62,6 @@ test.serial('user should be authenticated', async (t) => {
 // 	// t.is(request.statusCode, 400)
 // })
 
-
 test.serial('cryptography functions should hash and verify', async (t) => {
 	const user = await User.findOne({ username: 'sampleusername' })
 
