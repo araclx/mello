@@ -53,6 +53,27 @@ test.serial('in-memory database should be empty', async (t) => {
 	t.is(users.length, 0)
 })
 
+test.serial('create new user in database through API', async (t) => {
+	const request = await got.post('v1/users', {
+		prefixUrl: t.context.url,
+		method: 'POST',
+		json: {
+			email: 'jakub.jay.olan@gmail.com',
+			password: '123456789',
+			username: 'keinsell',
+		},
+	})
+
+	const response = JSON.parse(request.body)
+
+	t.is(request.statusCode, 201)
+	t.is(response.data.email, 'jakub.jay.olan@gmail.com')
+	t.is(response.data.username, 'keinsell')
+
+	const users = await User.find()
+	t.is(users.length, 2)
+})
+
 // TODO: Something is wrong with the express server because when request is related to mongoose, it doesn't work
 
 // test.serial('server should return users from database', async function (t) {
