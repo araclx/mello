@@ -4,3 +4,8 @@ export function isDev() {
 	if (NODE_ENV === 'development') true
 	else false
 }
+
+export function isDevOrCI() {
+	if (NODE_ENV === 'development' || NODE_ENV === 'ci') true
+	else false
+}
