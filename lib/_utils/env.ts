@@ -34,7 +34,3 @@ export const MINIO_SECRETKEY = process.env.MELLO_MINIO_SECRETKEY! || '12345678'
 
 // Security Configuration
 export const AUTH_TOKEN = process.env.MELLO_AUTH_TOKEN! || crypto.randomBytes(64).toString('hex')
-
-if (!AUTH_SECRET || !AUTH_CLIENTID || !AUTH_ISSUER) {
-	consola.warn('Auth0 Configuration is missing on your environment variables')
-}
