@@ -2,9 +2,10 @@ import anyTest, { TestFn as TestInterface } from 'ava'
 import got from 'got'
 import http from 'http'
 import listen from 'test-listen'
-import app from '_core/interfaces/http'
+import HTTPinterface from '_core/interfaces/http'
 
 const test = anyTest as TestInterface<{ server: http.Server; url: string }>
+const app = new HTTPinterface().app
 
 test.before(async (t) => {
 	t.context.server = http.createServer(app)

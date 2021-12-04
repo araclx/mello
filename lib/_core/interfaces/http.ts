@@ -22,7 +22,7 @@ app.use('/v2/auth', v2AuthRouter)
 
 */
 
-export class HTTPinterface {
+export default class HTTPinterface {
 	public app: express.Application
 
 	constructor() {

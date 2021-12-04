@@ -1,4 +1,4 @@
-import { HTTPinterface } from './_core/interfaces/http'
+import HTTPinterface from './_core/interfaces/http'
 import getPort from 'get-port'
 import consola from 'consola'
 import { MELLO_PORT, HOST } from '_utils/env'

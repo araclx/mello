@@ -2,12 +2,13 @@ import anyTest, { TestFn as TestInterface } from 'ava'
 import got from 'got'
 import http from 'http'
 import listen from 'test-listen'
-import app from '_core/interfaces/http'
+import HTTPinterface from '_core/interfaces/http'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 import { User } from 'users/model'
 
 const test = anyTest as TestInterface<{ server: http.Server; url: string; mongod: any }>
+const app = new HTTPinterface().app
 
 test.before(async (t) => {
 	t.context.server = http.createServer(app)
@@ -20,7 +21,7 @@ test.beforeEach(async () => {
 	await new User({
 		email: 'one@example.com',
 		password: '123456789',
-		username: 'keinsell',
+		username: 'sampleusername',
 	}).save()
 })
 
