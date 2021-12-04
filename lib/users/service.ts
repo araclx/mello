@@ -9,13 +9,21 @@ export class UserController {
 		res.json(users)
 	}
 
-	public async getOne(req: Request, res: Response) {
-		const requestedUsername = req.params.username
-		const dat = await User.findOne({ username: requestedUsername })
-		res.json(dat)
+	public async requestOneUserByUsername(req: Request, res: Response) {
+		const usernameParams = req.params.username
+		const requestedUser = await User.findOne({ username: usernameParams })
+		if (!requestedUser) {
+			res.status(404).json({ error: 'User not found' })
+		} else {
+			res.status(200).json(requestedUser)
+		}
 	}
 
+	// TODO: Route should not be acessible by users
 	public async createNewUserInDatabase(req: Request, res: Response) {
+		/**
+		 *  Validate the request (returns error if not valid) otherwise returns actual body of the request.
+		 */
 		const schema = joi.object().keys({
 			username: joi.string().required().max(32).min(6),
 			email: joi.string().email().required(),
@@ -44,9 +52,10 @@ export class UserController {
 			if (user) {
 				res.status(400).json({ error: 'User already exists' })
 			} else {
+				// If there isn't existing User in database create a new user
 				const user = new User(value)
 				await user.save()
-				res.json({
+				res.status(201).json({
 					data: user,
 				})
 			}
