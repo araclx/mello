@@ -47,7 +47,7 @@ test.serial('in-memory database should be empty', async (t) => {
 
 test.after.always(async (t) => {
 	t.context.server.close()
-	await mongoose.connection.dropDatabase()
+	// await mongoose.connection.dropDatabase()
 	await mongoose.disconnect()
 	await t.context.mongod.stop()
 })

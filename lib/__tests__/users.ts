@@ -57,7 +57,7 @@ test.todo('get user')
 
 test.after.always(async (t) => {
 	t.context.server.close()
-	await mongoose.connection.dropDatabase()
+	// await mongoose.connection.dropDatabase()
 	await mongoose.disconnect()
 	await t.context.mongod.stop()
 })
