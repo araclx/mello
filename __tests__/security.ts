@@ -6,7 +6,9 @@ import HTTPinterface from '_core/interfaces/http'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 import { User } from 'users/model'
+import jwt from 'jsonwebtoken'
 import { hash, verify } from '_utils/crypto'
+import { jwtConfig } from '_utils/config'
 
 const test = anyTest as TestInterface<{ server: http.Server; url: string; mongod: any }>
 const app = new HTTPinterface().app
@@ -21,7 +23,7 @@ test.before(async (t) => {
 test.beforeEach(async () => {
 	await new User({
 		email: 'one@example.com',
-		password: '123456789',
+		password: await hash('123456789'),
 		username: 'sampleusername',
 	}).save()
 })
@@ -29,6 +31,37 @@ test.beforeEach(async () => {
 test.afterEach.always(async () => {
 	await User.deleteMany()
 })
+
+test.serial('user should be authenticated', async (t) => {
+	const request = await got.post('v1/auth/login', {
+		prefixUrl: t.context.url,
+		json: {
+			username: 'sampleusername',
+			password: '123456789',
+			email: 'one@example.com',
+		},
+	})
+
+	const response = JSON.parse(request.body)
+	t.is(request.statusCode, 200)
+})
+
+// This crashes application, there investigation is needed
+// test.serial('user should not be authenticated because wrong password', async (t) => {
+// 	const request = await got.post('v1/auth/login', {
+// 		prefixUrl: t.context.url,
+// 		json: {
+// 			username: 'sampleusername',
+// 			password: '12sdxdfdsgset',
+// 			email: 'one@example.com',
+// 		},
+// 	})
+
+// 	const response = JSON.parse(request.body)
+// 	console.log(response)
+// 	// t.is(request.statusCode, 400)
+// })
+
 
 test.serial('cryptography functions should hash and verify', async (t) => {
 	const user = await User.findOne({ username: 'sampleusername' })
