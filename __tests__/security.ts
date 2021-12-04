@@ -32,6 +32,22 @@ test.afterEach.always(async () => {
 	await User.deleteMany()
 })
 
+test.serial('cryptography functions should hash and verify', async (t) => {
+	const user = await User.findOne({ username: 'sampleusername' })
+
+	const { password } = user
+
+	const hashedPassword = await hash(password)
+	User.findByIdAndUpdate(user._id, { password: hashedPassword })
+
+	const passwordVerification = await verify(password, hashedPassword)
+	const failedPasswordVerification = await verify('wrongpassword', hashedPassword)
+
+	// Check if the password hashing functions work
+	t.true(passwordVerification)
+	t.false(failedPasswordVerification)
+})
+
 test.serial('user should be authenticated', async (t) => {
 	const request = await got.post('v1/auth/login', {
 		prefixUrl: t.context.url,
@@ -44,6 +60,32 @@ test.serial('user should be authenticated', async (t) => {
 
 	const response = JSON.parse(request.body)
 	t.is(request.statusCode, 200)
+})
+
+test.serial('authorized user should be able to get into protected route', async (t) => {
+	const request = await got.post('v1/auth/login', {
+		prefixUrl: t.context.url,
+		json: {
+			username: 'sampleusername',
+			password: '123456789',
+			email: 'one@example.com',
+		},
+	})
+
+	const response = JSON.parse(request.body)
+	const { token } = response
+
+	const requestThatRequireAuthorization = await got.get('v1/auth/me', {
+		prefixUrl: t.context.url,
+		headers: {
+			authorization: `Bearer ${token}`,
+		},
+	})
+
+	const authorizedContentOfUserProfile = JSON.parse(requestThatRequireAuthorization.body)
+
+	t.is(authorizedContentOfUserProfile.username, 'sampleusername')
+	t.is(requestThatRequireAuthorization.statusCode, 200)
 })
 
 // This crashes application, there investigation is needed
@@ -62,25 +104,6 @@ test.serial('user should be authenticated', async (t) => {
 // 	// t.is(request.statusCode, 400)
 // })
 
-
-test.serial('cryptography functions should hash and verify', async (t) => {
-	const user = await User.findOne({ username: 'sampleusername' })
-
-	const { password } = user
-
-	const hashedPassword = await hash(password)
-	User.findByIdAndUpdate(user._id, { password: hashedPassword })
-
-	const passwordVerification = await verify(password, hashedPassword)
-	const failedPasswordVerification = await verify('wrongpassword', hashedPassword)
-
-	// Check if the password hashing functions work
-	t.true(passwordVerification)
-	t.false(failedPasswordVerification)
-})
-
-test.todo('authenticate user')
-test.todo('get into protected route')
 test.todo('authenticate user with invalid credentials')
 test.todo('authenticate user with invalid password')
 test.todo('cryptography functions should provide safe encryption')
