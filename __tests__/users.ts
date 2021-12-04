@@ -25,16 +25,46 @@ test.beforeEach(async () => {
 	}).save()
 })
 
-test.afterEach.always(() => {
-	User.remove()
+test.afterEach.always(async () => {
+	await User.deleteMany()
 })
 
-test.todo(
-	'get users'
-	// TODO: Create request to API
-	// TODO: Create request to database
-	// TODO: Compare data returned by API and Database
-)
+// test.todo(
+// 	'get users'
+// 	// TODO: Create request to API
+// 	// TODO: Create request to database
+// 	// TODO: Compare data returned by API and Database
+// )
+
+test.serial('in-memory database should connect to mongoose', async (t) => {
+	const contextDatabaseUri = t.context.mongod.getUri()
+	const actualConnectionUri: any = `mongodb://${mongoose.connection.host}:${mongoose.connection.port}/`
+	t.is(actualConnectionUri, contextDatabaseUri)
+})
+
+test.serial('in-memory database should hold exactly one record', async function (t) {
+	const users = await User.find()
+	t.is(users.length, 1)
+})
+
+test.serial('in-memory database should be empty', async (t) => {
+	await User.deleteMany()
+	const users = await User.find()
+	t.is(users.length, 0)
+})
+
+// TODO: Something is wrong with the express server because when request is related to mongoose, it doesn't work
+
+// test.serial('server should return users from database', async function (t) {
+// 	console.log(t.context.url)
+// 	const response = await got(`${t.context.url}/v1/users`)
+// 	console.log(response)
+// 	// const response = await got('v1/users', {
+// 	// 	prefixUrl: t.context.url,
+// 	// })
+// 	// const users = JSON.parse(response.body)
+// 	// t.is(users.length, 1)
+// })
 
 test.todo('create user')
 test.todo('update user')
@@ -43,6 +73,7 @@ test.todo('get user')
 
 test.after.always(async (t) => {
 	t.context.server.close()
+	await mongoose.connection.dropDatabase()
 	await mongoose.disconnect()
 	await t.context.mongod.stop()
 })
