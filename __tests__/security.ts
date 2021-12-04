@@ -6,6 +6,7 @@ import HTTPinterface from '_core/interfaces/http'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 import { User } from 'users/model'
+import { hash, verify } from '_utils/crypto'
 
 const test = anyTest as TestInterface<{ server: http.Server; url: string; mongod: any }>
 const app = new HTTPinterface().app
@@ -29,10 +30,27 @@ test.afterEach.always(async () => {
 	await User.deleteMany()
 })
 
+test.serial('cryptography functions should hash and verify', async (t) => {
+	const user = await User.findOne({ username: 'sampleusername' })
+
+	const { password } = user
+
+	const hashedPassword = await hash(password)
+	User.findByIdAndUpdate(user._id, { password: hashedPassword })
+
+	const passwordVerification = await verify(password, hashedPassword)
+	const failedPasswordVerification = await verify('wrongpassword', hashedPassword)
+
+	// Check if the password hashing functions work
+	t.true(passwordVerification)
+	t.false(failedPasswordVerification)
+})
+
 test.todo('authenticate user')
 test.todo('get into protected route')
 test.todo('authenticate user with invalid credentials')
 test.todo('authenticate user with invalid password')
+test.todo('cryptography functions should provide safe encryption')
 
 test.after.always(async (t) => {
 	t.context.server.close()
