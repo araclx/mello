@@ -25,6 +25,10 @@ class AuthController {
 			return 0
 		})(req, res, next)
 	}
+
+	public returnUserProfile(req: express.Request, res: express.Response) {
+		res.json(req.user)
+	}
 }
 
 export class AuthService {
@@ -37,5 +41,6 @@ export class AuthService {
 
 	public routes() {
 		this.router.post('/login', this.controller.authenticateUser)
+		this.router.get('/me', passport.authenticate('jwt'), this.controller.returnUserProfile)
 	}
 }
