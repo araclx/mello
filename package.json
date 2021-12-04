@@ -39,6 +39,7 @@
 		"@vercel/ncc": "^0.32.0",
 		"ava": "^4.0.0-rc.1",
 		"c8": "^7.10.0",
+		"ci-parallel-vars": "^1.0.1",
 		"esbuild-loader": "^2.16.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"friendly-errors-webpack-plugin": "^1.7.0",
