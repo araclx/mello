@@ -29,31 +29,10 @@ test.afterEach.always(async () => {
 	await User.deleteMany()
 })
 
-test.serial('create new user in database through API', async (t) => {
-	const request = await got.post('v1/users', {
-		prefixUrl: t.context.url,
-		method: 'POST',
-		json: {
-			email: 'jakub.jay.olan@gmail.com',
-			password: '123456789',
-			username: 'keinsell',
-		},
-	})
-
-	const response = JSON.parse(request.body)
-
-	t.is(request.statusCode, 201)
-	t.is(response.data.email, 'jakub.jay.olan@gmail.com')
-	t.is(response.data.username, 'keinsell')
-
-	const users = await User.find()
-	t.is(users.length, 2)
-})
-
-test.todo('create user')
-test.todo('update user')
-test.todo('delete user')
-test.todo('get user')
+test.todo('authenticate user')
+test.todo('get into protected route')
+test.todo('authenticate user with invalid credentials')
+test.todo('authenticate user with invalid password')
 
 test.after.always(async (t) => {
 	t.context.server.close()
