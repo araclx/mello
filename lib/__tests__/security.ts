@@ -37,11 +37,8 @@ test.serial('cryptography functions should hash and verify', async (t) => {
 
 	const { password } = user
 
-	const hashedPassword = await hash(password)
-	User.findByIdAndUpdate(user._id, { password: hashedPassword })
-
-	const passwordVerification = await verify(password, hashedPassword)
-	const failedPasswordVerification = await verify('wrongpassword', hashedPassword)
+	const passwordVerification = await verify('123456789', password)
+	const failedPasswordVerification = await verify('wrongpassword', password)
 
 	// Check if the password hashing functions work
 	t.true(passwordVerification)
