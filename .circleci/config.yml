@@ -16,8 +16,7 @@ jobs:
          - checkout
          - node/install-packages
          - run: yarn se-release
-   build:
-      working_directory: /tmp
+   buildThroughWebpack:
       executor:
          name: node/default
          tag: 17.0.1
@@ -27,12 +26,12 @@ jobs:
               pkg-manager: yarn
          - run: yarn build:webpack
          - store_artifacts:
-            path: /tmp/dist
+            path: ~/project/dist
 
 workflows:
    bleeding:
       jobs:
-         - build
+         - buildThroughWebpack
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
