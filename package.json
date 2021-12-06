@@ -10,8 +10,9 @@
 	"scripts": {
 		"start": "node dist/bundle.js",
 		"test": "c8 ava",
-		"build": "ncc build lib/index.ts -o dist -s --license LICENSE.md -m",
-		"dev": "webpack",
+		"build:ncc": "ncc build lib/index.ts -o dist -s --license LICENSE.md -m",
+		"build:webpack": "webpack --config .webpack/prod.webpack.config.js",
+		"dev": "webpack -c .webpack/dev.webpack.config.js",
 		"se-release": "semantic-release"
 	},
 	"devDependencies": {

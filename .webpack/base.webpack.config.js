@@ -8,7 +8,6 @@ const errors = require('friendly-errors-webpack-plugin')
 const nodemon = require('nodemon-webpack-plugin')
 const tspaths = require('tsconfig-paths-webpack-plugin')
 
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const { merge } = require('webpack-merge')
 
 const baseConfig = {
@@ -49,7 +48,7 @@ const baseConfig = {
 	},
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, '..', 'dist'),
 	},
 	externals: {
 		express: 'commonjs express',
@@ -60,39 +59,5 @@ const baseConfig = {
 		bcrypt: 'commonjs bcrypt',
 	},
 }
-const productionConfig = {
-	mode: 'production',
-	plugins: [
-		new bar({
-			name: 'mellstruct',
-		}),
-		new errors(),
-	],
-	optimization: {
-		minimizer: [
-			new ESBuildMinifyPlugin({
-				target: 'esnext', // Syntax to compile to (see options below for possible values)
-			}),
-		],
-	},
-}
 
-const developmentConfig = {
-	mode: 'development',
-	watch: true,
-	plugins: [
-		new bar({
-			name: 'mellstruct',
-		}),
-		new errors(),
-		new nodemon({
-			quiet: true,
-		}),
-	],
-}
-
-if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'CI') {
-	module.exports = merge(baseConfig, productionConfig)
-} else {
-	module.exports = merge(baseConfig, developmentConfig)
-}
+module.exports = baseConfig

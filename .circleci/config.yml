@@ -17,6 +17,7 @@ jobs:
          - node/install-packages
          - run: yarn se-release
    build:
+      working_directory: /tmp
       executor:
          name: node/default
          tag: 17.0.1
@@ -24,7 +25,9 @@ jobs:
          - checkout
          - node/install-packages:
               pkg-manager: yarn
-         - run: yarn build
+         - run: yarn build:webpack
+         - store_artifacts:
+            path: /tmp/dist
 
 workflows:
    bleeding:
