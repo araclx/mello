@@ -6,6 +6,7 @@ orbs:
    codecov: codecov/codecov@3.2.0
    postman: postman/newman@0.0.2
    k6: k6io/test@1.1.1
+   snyk: snyk/snyk@1.1.2
 
 jobs:
    release:
@@ -27,11 +28,23 @@ jobs:
          - run: yarn build:webpack
          - store_artifacts:
             path: ~/project/dist
+   buildThroughDocker:
+      executor: docker/machine
+      steps:
+         - checkout
+         - docker/build
+
+
+
+   # buildThroughDocker
+   # buildThroughNCC
+   # buildThroughPkg
 
 workflows:
    bleeding:
       jobs:
          - buildThroughWebpack
+         - buildThroughDocker
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
@@ -47,5 +60,7 @@ workflows:
       #            branches:
       #               only:
       #                  - main
+
 # Envars Reqiurements
 # CODECOV_TOKEN, stands for https://codecov.com write token.
+# SNYK_TOKEN, stands for https://snyk.io write token.
