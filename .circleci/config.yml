@@ -29,14 +29,14 @@ jobs:
          - store_artifacts:
             path: ~/project/dist
    buildThroughDocker:
-      executor: docker/machine
+      executor: docker/docker
       steps:
+         - setup_remote_docker
          - checkout
-         - docker/build
+         - docker/check
+         - docker/build:
+            image: mello/api
 
-
-
-   # buildThroughDocker
    # buildThroughNCC
    # buildThroughPkg
 
