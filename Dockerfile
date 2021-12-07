@@ -13,7 +13,7 @@ USER root
 ENV NODE_ENV 'production'
 
 # Install Application Dependencies
-COPY package.json .
+COPY package.json yarn.lock /usr/src/app/
 RUN yarn install
 
 # Copy source of application
