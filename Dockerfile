@@ -1,4 +1,4 @@
-FROM node:alpine AS development
+FROM node:17.0.1 AS development
 
 # Working Directory of container
 WORKDIR /usr/src/app
