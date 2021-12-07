@@ -1,19 +1,19 @@
-FROM node:17.0.1 AS development
+FROM node:17.0.1
 
 # Working Directory of container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Healthchecking to monitor application status
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl -v http://localhost:1337/ || exit 1
 
 # Container User with root permissions
-# USER root
+USER root
 
 # Container DotENV Configuration
 ENV NODE_ENV 'production'
 
 # Install Application Dependencies
-COPY package.json yarn.lock /usr/src/app/
+COPY package.json yarn.lock /app/
 RUN yarn install
 
 # Copy source of application
@@ -26,6 +26,6 @@ RUN yarn build:webpack
 USER node
 
 # Application Entrypoint
-EXPOSE 3600/tcp
+EXPOSE 1337/tcp
 ENTRYPOINT ["node"]
 CMD [ "dist/bundle.js" ]
