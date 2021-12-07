@@ -33,7 +33,7 @@ jobs:
       steps:
          - setup_remote_docker
          - checkout
-         - docker/check
+         # - docker/check
          - docker/build:
             image: mello/api
 
