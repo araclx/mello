@@ -1,6 +1,7 @@
 import express from 'express'
 import compression from 'compression'
 import cors from 'cors'
+import morgan from 'morgan'
 import session from 'express-session'
 
 import heyRouter, { defaultRouter } from 'hey/router'
@@ -9,6 +10,7 @@ import { AuthService } from '_core/security/service'
 
 import { sessionConfig } from '_utils/config'
 import passport from '_core/security/passport'
+import { isDev } from '_utils/funs'
 
 /* In case of Auth0 usage we're supposed to use these imports.
 
@@ -37,6 +39,7 @@ export default class HTTPinterface {
 		this.app.use(express.urlencoded({ extended: false }))
 		this.app.use(compression())
 		this.app.use(cors())
+		if (isDev) this.app.use(morgan('dev'))
 		this.app.disable('x-powered-by')
 	}
 
