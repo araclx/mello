@@ -7,7 +7,7 @@ if (NODE_ENV === 'CI') logger.pause()
 
 export async function mongooseService() {
 	mongoose.connection.on('connected', () => {
-		logger.success('Connected to database.')
+		logger.success('Connected to MongoDB.')
 	})
 	mongoose.connection.on('reconnected', () => {
 		logger.success('Reconnected to database.')
