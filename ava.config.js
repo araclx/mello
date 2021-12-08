@@ -12,7 +12,7 @@ module.exports = {
 	tap: false,
 	cache: true,
 	timeout: '60s',
-	files: ['lib/__tests__/**/*'],
+	files: ['lib/__tests__/**/*', '!lib/__tests__/k6/**/*'],
 	environmentVariables: {
 		NODE_ENV: 'CI',
 	},
