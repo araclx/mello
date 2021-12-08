@@ -30,7 +30,7 @@
 # ENTRYPOINT ["node"]
 # CMD [ "dist/bundle.js" ]
 
-FROM node:latest
+FROM node:17.0.1
 
 COPY . /src
 WORKDIR /src
