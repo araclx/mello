@@ -5,9 +5,9 @@ import * as Minio from 'minio'
 import joi from 'joi'
 import crypto from 'crypto'
 import { HOST, MELLO_PORT } from '_utils/env'
+import { multerStorage } from '_core/services/objectStorage'
 
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage })
+const upload = multer({ storage: multerStorage })
 const minio = new Minio.Client(minioConfig)
 
 const docs = require('../../postman/schemas/schema.json')
