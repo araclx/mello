@@ -4,7 +4,7 @@ import { hash } from '_utils/crypto'
 import joi from 'joi'
 
 export class UserController {
-	public async getAll(req: Request, res: Response) {
+	public async getAllUsersFromDatabase(req: Request, res: Response) {
 		const users = await User.find()
 		res.json(users)
 	}
@@ -75,6 +75,7 @@ export class UserService {
 	}
 
 	public routes() {
+		this.router.get('/', this.controller.getAllUsersFromDatabase)
 		this.router.post('/', this.controller.createNewUserInDatabase)
 	}
 }

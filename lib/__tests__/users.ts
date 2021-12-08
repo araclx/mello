@@ -30,7 +30,7 @@ test.afterEach.always(async () => {
 	await User.deleteMany()
 })
 
-test.serial('create new user in database through API', async (t) => {
+test.serial('create new user in database', async (t) => {
 	const request = await got.post('v1/users', {
 		prefixUrl: t.context.url,
 		method: 'POST',
@@ -49,6 +49,19 @@ test.serial('create new user in database through API', async (t) => {
 
 	const users = await User.find()
 	t.is(users.length, 2)
+})
+
+test.serial('return all users from database', async (t) => {
+	const request = await got.get('v1/users', {
+		prefixUrl: t.context.url,
+	})
+
+	const response = JSON.parse(request.body)
+
+	const users = await User.find()
+	t.is(request.statusCode, 200)
+	t.is(users.length, response.length)
+	t.is(response.length, 1)
 })
 
 test.todo('update user')
