@@ -1,6 +1,7 @@
 import anyTest, { TestFn as TestInterface } from 'ava'
 import got from 'got'
 import http from 'http'
+import faker from 'faker'
 import listen from 'test-listen'
 import HTTPinterface from '_core/interfaces/http'
 import { MongoMemoryServer } from 'mongodb-memory-server'
@@ -19,9 +20,9 @@ test.before(async (t) => {
 
 test.beforeEach(async () => {
 	await new User({
-		email: 'one@example.com',
+		email: faker.internet.email(),
 		password: '123456789',
-		username: 'sampleusername',
+		username: faker.internet.userName(),
 	}).save()
 })
 
@@ -50,7 +51,6 @@ test.serial('create new user in database through API', async (t) => {
 	t.is(users.length, 2)
 })
 
-test.todo('create user')
 test.todo('update user')
 test.todo('delete user')
 test.todo('get user')

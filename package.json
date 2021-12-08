@@ -43,6 +43,7 @@
 		"ci-parallel-vars": "^1.0.1",
 		"esbuild-loader": "^2.16.0",
 		"eslint-plugin-prettier": "^4.0.0",
+		"faker": "^5.5.3",
 		"friendly-errors-webpack-plugin": "^1.7.0",
 		"husky": "^7.0.4",
 		"mongodb-memory-server": "^8.0.2",
