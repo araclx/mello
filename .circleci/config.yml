@@ -45,12 +45,16 @@ workflows:
    bleeding:
       jobs:
          - buildThroughWebpack
-         - buildThroughDocker
          - node/test:
               pkg-manager: yarn
               version: '17.0.1'
               post-steps:
                  - codecov/upload
+         - buildThroughDocker:
+            # Do not crashed builds because it's waste of time
+            requires:
+               - 'node/test'
+
       #    - release:
       #         requires:
       #            - 'node/test'
