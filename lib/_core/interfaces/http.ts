@@ -9,6 +9,7 @@ import { UserService } from 'users/service'
 import { AuthService } from '_core/security/service'
 
 import { sessionConfig } from '_utils/config'
+import ratelimiter from '_core/security/rate-limiter'
 import passport from '_core/security/passport'
 import { isDev } from '_utils/funs'
 
@@ -44,6 +45,8 @@ export default class HTTPinterface {
 	}
 
 	private security() {
+		// this.app.enable('trust proxy')
+		this.app.use(ratelimiter)
 		this.app.use(session(sessionConfig))
 		this.app.use(passport.initialize())
 		this.app.use(passport.session())
