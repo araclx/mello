@@ -31,21 +31,28 @@ test.afterEach.always(async () => {
 })
 
 test.serial('create new user in database', async (t) => {
+
+	const generatedData = {
+		email: faker.internet.email(),
+		username: faker.internet.userName(),
+		password: faker.internet.password(),
+	}
+
 	const request = await got.post('v1/users', {
 		prefixUrl: t.context.url,
 		method: 'POST',
 		json: {
-			email: 'jakub.jay.olan@gmail.com',
-			password: '123456789',
-			username: 'keinsell',
+			email: generatedData.email,
+			password: generatedData.password,
+			username: generatedData.username,
 		},
 	})
 
 	const response = JSON.parse(request.body)
 
 	t.is(request.statusCode, 201)
-	t.is(response.data.email, 'jakub.jay.olan@gmail.com')
-	t.is(response.data.username, 'keinsell')
+	t.is(response.data.email, generatedData.email)
+	t.is(response.data.username, generatedData.username)
 
 	const users = await User.find()
 	t.is(users.length, 2)
