@@ -4020,10 +4020,10 @@ expand-template@^2.0.3:
   resolved "https://registry.yarnpkg.com/expand-template/-/expand-template-2.0.3.tgz#6e14b3fcee0f3a6340ecb57d2e8918692052a47c"
   integrity sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
 
-express-openid-connect@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/express-openid-connect/-/express-openid-connect-2.5.1.tgz#fdb75cea98e1026943ae77d977b8d7d791650abb"
-  integrity sha512-BYxfYErzysDGEQ5PJQS20RnFudDjhv7L2BOq5FoPJbhJoDl+qCEyENkY6ryxkfdaV65V4ge7Ww9s4STa+3UKBw==
+express-openid-connect@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/express-openid-connect/-/express-openid-connect-2.5.2.tgz#5c576470084fb6777c0be8faecaa56771b27b782"
+  integrity sha512-YC1TwL+WE9Suafn5u+nDHOJf+k8qMNpvtHZrUX+6LCYH3G4l3WYu4NlRXjTu+Gx3bzV68Z89UhA4LDRyrns1EA==
   dependencies:
     base64url "^3.0.1"
     cb "^0.1.0"
@@ -4032,11 +4032,11 @@ express-openid-connect@^2.5.1:
     debug "^4.3.2"
     futoin-hkdf "^1.4.2"
     http-errors "^1.8.0"
-    joi "^17.4.1"
+    joi "^17.4.2"
     jose "^2.0.5"
     on-headers "^1.0.2"
-    openid-client "^4.7.5"
-    p-memoize "^4.0.1"
+    openid-client "^4.9.1"
+    p-memoize "^4.0.2"
     url-join "^4.0.1"
 
 express-rate-limit@^5.5.1:
@@ -4854,7 +4854,7 @@ http-errors@1.7.2:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.0"
 
-http-errors@1.8.1:
+http-errors@1.8.1, http-errors@^1.8.0:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.8.1.tgz#7c3f28577cbc8a207388455dbd62295ed07bd68c"
   integrity sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==
@@ -4864,17 +4864,6 @@ http-errors@1.8.1:
     setprototypeof "1.2.0"
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.1"
-
-http-errors@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.8.0.tgz#75d1bbe497e1044f51e4ee9e704a62f28d336507"
-  integrity sha512-4I8r0C5JDhT5VkvI47QktDW75rNlGVsUf/8hzjCC/wkWI/jdTRmBb9aI7erSG82r1bjKY3F6k28WnsVxB1C73A==
-  dependencies:
-    depd "~1.1.2"
-    inherits "2.0.4"
-    setprototypeof "1.2.0"
-    statuses ">= 1.5.0 < 2"
-    toidentifier "1.0.0"
 
 http-errors@~1.7.2, http-errors@~1.7.3:
   version "1.7.3"
@@ -5601,7 +5590,7 @@ jest-worker@^27.0.6:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-joi@^17.4.1, joi@^17.4.2:
+joi@^17.4.2:
   version "17.4.2"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.4.2.tgz#02f4eb5cf88e515e614830239379dcbbe28ce7f7"
   integrity sha512-Lm56PP+n0+Z2A2rfRvsfWVDXGEWjXxatPopkQ8qQ5mxCEhwHG+Ettgg5o98FFaxilOxozoa14cFhrE/hOzh/Nw==
@@ -7220,7 +7209,7 @@ opener@^1.5.2:
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
-openid-client@^4.7.5:
+openid-client@^4.9.1:
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-4.9.1.tgz#4f00a9d1566c0fa08f0dd5986cf0e6b1e5d14186"
   integrity sha512-DYUF07AHjI3QDKqKbn2F7RqozT4hyi4JvmpodLrq0HHoNP7t/AjeG/uqiBK1/N2PZSAQEThVjDLHSmJN4iqu/w==
@@ -7308,7 +7297,7 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
-p-limit@^2.2.0:
+p-limit@^2.2.0, p-limit@^2.2.2:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.3.0.tgz#3dd33c647a214fdfffd835933eb086da0dc21db1"
   integrity sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==
@@ -7376,18 +7365,24 @@ p-map@^5.2.0:
   dependencies:
     aggregate-error "^4.0.0"
 
-p-memoize@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/p-memoize/-/p-memoize-4.0.2.tgz#d9c84056a2efbdf4055f83547435e9af49aebb6a"
-  integrity sha512-REJQ6EIeFmvT9O/u0H/ZVWjRII/1/0GhckleQX0yn+Uk9EdXTtmfnrfa3FwF8ZUrfUEe8NInvlRa0ZBKlMxxTA==
+p-memoize@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/p-memoize/-/p-memoize-4.0.3.tgz#9f3b9965f1fd79dadc2e6ec957c1b43c410a6f99"
+  integrity sha512-lX9GfP1NT5jheKsmvc1071L74/Vw7vul+uZEnst7LNuMtbKlWYwKItqcLSAVUyJnrfQAqFFCJQ5bt0whrDsWQA==
   dependencies:
     map-age-cleaner "^0.1.3"
     mimic-fn "^3.0.0"
+    p-settle "^4.1.1"
 
 p-reduce@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-2.1.0.tgz#09408da49507c6c274faa31f28df334bc712b64a"
   integrity sha512-2USApvnsutq8uoxZBGbbWM0JIYLiEMJ9RlaN7fAzVNb9OZN0SHjjTTfIcb667XynS5Y1VhwDJVDa72TnPzAYWw==
+
+p-reflect@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-reflect/-/p-reflect-2.1.0.tgz#5d67c7b3c577c4e780b9451fc9129675bd99fe67"
+  integrity sha512-paHV8NUz8zDHu5lhr/ngGWQiW067DK/+IbJ+RfZ4k+s8y4EKyYCz8pGYWjxCg35eHztpJAt+NUgvN4L+GCbPlg==
 
 p-retry@^4.0.0:
   version "4.6.1"
@@ -7396,6 +7391,14 @@ p-retry@^4.0.0:
   dependencies:
     "@types/retry" "^0.12.0"
     retry "^0.13.1"
+
+p-settle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/p-settle/-/p-settle-4.1.1.tgz#37fbceb2b02c9efc28658fc8d36949922266035f"
+  integrity sha512-6THGh13mt3gypcNMm0ADqVNCcYa3BK6DWsuJWFCuEKP1rpY+OKGp7gaZwVmLspmic01+fsg/fN57MfvDzZ/PuQ==
+  dependencies:
+    p-limit "^2.2.2"
+    p-reflect "^2.1.0"
 
 p-timeout@^3.1.0:
   version "3.2.0"
