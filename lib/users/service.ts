@@ -37,7 +37,6 @@ export class UserController {
 			profilePicture: joi.string(),
 			photos: joi.array(),
 			location: joi.string(),
-			salt: joi.string(),
 		})
 
 		const { error, value } = schema.validate(req.body)
@@ -62,7 +61,39 @@ export class UserController {
 		})
 	}
 
-	public async updateOne(req: Request, res: Response) {}
+	public async requestOneUserAndUpdate(req: Request, res: Response) {
+		const usernameParams = req.params.username
+		const schema = joi.object().keys({
+			username: joi.string().required().max(32).min(6),
+			email: joi.string().email().required(),
+			password: joi.string().required(),
+			firstName: joi.string(),
+			lastName: joi.string(),
+			birthdate: joi.date(),
+			height: joi.number(),
+			weight: joi.number(),
+			gender: joi.string(),
+			profilePicture: joi.string(),
+			photos: joi.array(),
+			location: joi.string(),
+		})
+
+		const requestedUser = await User.findOne({ username: usernameParams })
+
+		if (!requestedUser) res.status(404).json({ error: 'User not found' })
+
+		const { error, value } = schema.validate(req.body)
+		value.password = await hash(value.password)
+
+		if (error) {
+			res.status(400).json({ error: error.message })
+			return
+		}
+
+		const updatedUser = User.findOneAndUpdate({ username: usernameParams }, { value })
+		res.status(200).json(updatedUser)
+	}
+
 	public async deleteOne(req: Request, res: Response) {}
 }
 
@@ -76,6 +107,8 @@ export class UserService {
 
 	public routes() {
 		this.router.get('/', this.controller.getAllUsersFromDatabase)
+		this.router.get('/:username', this.controller.requestOneUserByUsername)
+		this.router.put('/:username', this.controller.requestOneUserAndUpdate)
 		this.router.post('/', this.controller.createNewUserInDatabase)
 	}
 }
