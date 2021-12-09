@@ -31,7 +31,6 @@ test.afterEach.always(async () => {
 })
 
 test.serial('create new user in database', async (t) => {
-
 	const generatedData = {
 		email: faker.internet.email(),
 		username: faker.internet.userName(),
