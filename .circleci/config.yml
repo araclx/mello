@@ -37,6 +37,8 @@ jobs:
          # - docker/check
          - docker/build:
             image: mello/api
+         - snyk/scan:
+            docker-image-name: mello/api
 
    # buildThroughNCC
    # buildThroughPkg
