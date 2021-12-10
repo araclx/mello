@@ -53,6 +53,7 @@
 		"pm2": "^5.1.2",
 		"prettier": "^2.4.1",
 		"semantic-release": "^18.0.0",
+		"snyk": "^1.788.0",
 		"test-listen": "^1.1.0",
 		"ts-loader": "^9.2.6",
 		"ts-node": "^10.4.0",
