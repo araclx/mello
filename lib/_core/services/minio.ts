@@ -15,6 +15,9 @@ const minio = new Minio.Client(minioConfig)
 const logger = consola.withScope('minio')
 if (process.env.NODE_ENV === 'CI') logger.pause()
 
+/**
+ * Actually an simple function that setups and minio instance, just the bucket that we need to use for uploading photos and other kind of stuff.
+ */
 export function minioService() {
 	// Check actual instance of mello-photos, and if there is no such bucket create a new one.
 	minio.bucketExists('mello-photos', function (err, exist) {
