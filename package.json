@@ -8,6 +8,7 @@
 	"license": "GNU",
 	"private": true,
 	"scripts": {
+		"prepare": "husky install",
 		"start": "node dist/bundle.js",
 		"test": "c8 ava",
 		"build:ncc": "ncc build lib/index.ts -o dist -s --license LICENSE.md -m",
