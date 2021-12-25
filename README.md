@@ -1,5 +1,7 @@
 # Mello
 
+> Mello got temporary discountiuned in a reason of lacking inspiration what should be putted into project...
+
 An open-source application based on Node.js as a platform to connect people in secure and private way including complete encryption on people's messages and
 private posts. According to vision of this project it's build bascially for fun and threse is no need to worry about something, personally I would never use
 this project (~@keinsell, Founder of Mello)
