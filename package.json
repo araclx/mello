@@ -79,7 +79,7 @@
 		"csurf": "^1.11.0",
 		"dotenv": "^10.0.0",
 		"express": "^5.0.0-alpha.8",
-		"express-openid-connect": "^2.5.2",
+		"express-openid-connect": "^2.7.2",
 		"express-rate-limit": "^5.5.1",
 		"express-session": "^1.17.2",
 		"get-port": "^6.0.0",
