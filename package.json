@@ -90,7 +90,7 @@
 		"mongoose": "^6.0.13",
 		"morgan": "^1.10.0",
 		"multer": "^1.4.3",
-		"multer-minio-storage": "^0.0.8",
+		"multer-minio-storage": "^1.0.0",
 		"passport": "^0.5.0",
 		"passport-jwt": "^4.0.0",
 		"passport-local": "^1.0.0",
